@@ -1,0 +1,212 @@
+.App {
+  background-color: #ffffff;
+  position: relative;
+  height: 100vh;
+}
+
+.container {
+  max-width: 1440px;
+  display: flex;
+  background: #F6F7F9;
+  flex-direction: column;
+  align-items: center;
+}
+.circle-container {
+  position: absolute;
+  background-color: red;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  translate: -25px -25px;
+}
+/* NavBar */
+.navContainer {
+  display: flex;
+  background-color: white;
+  height: 124px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(195, 212, 233, 0.4);
+}
+.navContainer h1 {
+  color: var(--blue);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 34px;
+  font-weight: 300;
+}
+.navContainer h1 span{
+  font-size: 36px;
+  font-weight: 600;
+}
+.search-div{
+  width: 492px;
+  height: 44px;
+  border: 1px solid var(--darkGrey);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 25px;
+}
+
+.search-div input {
+ all: unset;
+ border: none;
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ width: 100%;
+ padding-left:20px;
+ height: 50%;
+}
+.nav-Icons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 20px;
+  width: 236px;
+  height: 44px;
+}
+.nav-Icons button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--darkGrey);
+}
+/* Ad header-content */
+.header-container{
+  display: flex;
+  gap: 25px;
+}
+.ad1{
+  overflow: hidden;
+  width: 640px;
+  height: 360px;
+  border-radius: 10px;
+  background-color: #54A6FF;;
+}
+
+.adCircles .c1{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  left: 210px;
+  top: 280px;
+  border-radius: 50%;
+
+  border: 14px solid rgba(255, 255, 255, 0.06);
+}
+.adCircles .c2{
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 155px;
+  top: 230px;
+  border-radius: 50%;
+  border: 20px solid rgba(255, 255, 255, 0.06);
+}
+.adCircles .c3{
+  position: absolute;
+  width: 275px;
+  height: 275px;
+  left: 93px;
+  top: 167px;
+  border-radius: 50%;
+  border: 20px solid rgba(255, 255, 255, 0.06);
+}
+.adCircles .c4{
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  left: 30px;
+  top: 105px;
+  border-radius: 50%;
+  border: 20px solid rgba(255, 255, 255, 0.06);
+}
+.adCircles .c5{
+  position: absolute;
+  width: 525px;
+  height: 525px;
+  left: -32px;
+  top: 42px;
+  border-radius: 50%;
+  border: 20px solid rgba(255, 255, 255, 0.06);
+  z-index: 0;
+}
+.ad2{
+  overflow: hidden;
+  position: relative;
+  width: 640px;
+  height: 360px;
+  border-radius: 10px;
+  background-color: var(--blue);
+}
+.ad-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 15px;
+  gap: 16px;
+
+  width: 284px;
+  height: 160px;
+}
+.ad-text h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 150%;
+  margin: 0;
+  color: #FFFFFF;
+}
+.ad-text p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+.rental-car-ad-btn{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  width: 120px;
+  height: 44px;  
+  background: #3563E9;
+  border: none;
+  border-radius: 4px;
+  margin: 15px;
+}
+.rental-car-ad-btn span{
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-style: normal;
+  color: white;
+  font-size: 16px;
+  white-space: nowrap;
+}
+.second {
+  background: #54A6FF;
+}
+/* Pick Drop */
+.pick-drop-container {
+  display: flex;
+}
+.pickup-container {
+  width: 582px;
+  height: 132px;
+  border-radius: 10px;
+}
+.dropoff-container {
+  width: 582px;
+  height: 132px;
+  border-radius: 10px;
+}
