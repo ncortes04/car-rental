@@ -30,7 +30,7 @@ const Main = () => {
         <div className='popular-div'>
            <div className='popular-header'>
                 <h3>Popular Cars</h3>
-                <a>View All</a>
+                <a href='/viewall'>View All</a>
            </div>
            <div className='main-flex'>
                {testMap && testMap.map((item) => {

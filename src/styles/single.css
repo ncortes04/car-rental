@@ -1,0 +1,67 @@
+.single-side-flex {
+    display: flex;
+  }
+  .single-container{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+  }
+  .single-car-upper {
+    display: flex;
+    gap: 20px;
+  }
+  .car-catalouge {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .car-single-subphotos {
+    display: flex;
+    gap: 20px;
+  }
+  .car-single-subphotos div{
+    flex: 1;
+  }
+  .car-single-expanded-description {
+    flex: 1;
+    max-width: 640px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-single-description {  
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 200%;
+    color: #596780;
+  }
+  .car-attributes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .car-attributes p{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin: 0;
+  }
+  .car-attr-flex {
+    flex: 1;
+    min-width: 40%;
+  }
+  .car-attr-flex-text {
+    display: flex;
+    justify-content: space-between;
+  }
+  .attr-label {
+    font-weight: 400;
+    font-size: 20px;
+    color: #90A3BF;
+  }
+  .attr-value {
+    font-weight: 600;
+    font-size: 20px;
+    color: #596780;
+  }

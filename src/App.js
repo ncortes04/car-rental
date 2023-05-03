@@ -5,6 +5,7 @@ import NavBar from './comps/navbar';
 import Header from './comps/Header';
 import PickDrop from './comps/PickDrop'
 import Main from './comps/Main'
+import Single from './comps/Single';
 import Sidebar from './comps/Sidebar';
 import Footer from './comps/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -28,6 +29,7 @@ function App() {
                 </div>}/>
                 <Route path='/viewall' 
               element={<ViewAll/>}/>
+              <Route path='/single' element={<Single/>}/>
             </Routes>
         <Footer/>
       </div>

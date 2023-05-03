@@ -2,7 +2,7 @@
   position: relative;
   height: 100vh;
   background: #F6F7F9;
-
+  overflow-x: hidden;
 }
 p, a, h1, h2, h3{
   font-family: 'Plus Jakarta Sans', sans-serif;
@@ -92,11 +92,13 @@ button:hover {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  margin-bottom: 20px
 }
 .ad1{
   overflow: hidden;
-  width: 640px;
-  height: 360px;
+  max-width: 640px;
+  flex: 1;
+  max-height: 360px;
   border-radius: 10px;
   background-color: #54A6FF;;
 }
@@ -151,8 +153,9 @@ button:hover {
 .ad2{
   overflow: hidden;
   position: relative;
-  width: 640px;
-  height: 360px;
+  max-width: 640px;
+  flex: 1;
+  max-height: 360px;
   border-radius: 10px;
   background-color: var(--blue);
 }
@@ -214,9 +217,10 @@ button:hover {
 /* Pick Drop */
 .pick-drop-container {
   display: flex;
+  position: relative;
+  min-width: 1120px;
   width: 100%;
   gap: 20px;
-  padding-top: 20px;
   align-items: center;
   justify-content: space-between;
 }
@@ -233,6 +237,10 @@ button:hover {
 }
 
 .reverse-pick-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 60px;
   height: 60px;
   background: #3563E9;
@@ -247,7 +255,7 @@ button:hover {
 .reverse-pick-btn:hover {
   cursor: pointer;
   box-shadow: 0 5px 7px 2px rgba(0, 0, 0, 0.363);
-  transform: translateY(-3px);
+  transform: translate(-50%, -54%);
 }
 .pickdrop-settings-div {
   display: flex;
@@ -307,6 +315,7 @@ button:hover {
   font-size: 16px;
   line-height: 150%;
 }
+
 /* main-car-cards */
 
 .main-container {
@@ -317,6 +326,7 @@ button:hover {
 }
 .popular-div {
   width: 100%;
+  max-width: 1340px;
   display: flex;
   flex-direction: column;
 }
@@ -353,13 +363,13 @@ button:hover {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .card-header {
   display: flex;
   flex-direction: column;
 }
 .card-car-name{
-font-style: normal;
 font-weight: 700;
 font-size: 20px;
 margin-bottom: 5px;
@@ -422,7 +432,8 @@ color: #1A202C;
   justify-content: space-between;
 }
 .car-footer-price {
-  font-size: 20px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 25px;
   font-weight: 700;
   color: #1A202C;
 }
@@ -437,6 +448,9 @@ color: #1A202C;
   border: none;
   height: 44px;
   background: #3563E9;
+  font-weight: 700;
+  font-size: 16px;
+  color: #FFFFFF;
   border-radius: 4px;
 }
 /* footer */
@@ -497,14 +511,101 @@ color: #1A202C;
 }
 /* sidebar */
 .sidebar-container {
+  padding: 50px;
   max-width: 360px;
-  width: 30%;
+  min-width: 290px;
+  width: 18%;
   background-color: #FFFFFF;
 }
-.sidebar-container p {
+.sidebar-container > label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
   font-size: 12px;
-  line-height: 15px;
   color: #90A3BF;
+}
+.check-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 20px;
+  color: #596780;
+}
+.check-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.check-text span{
+  color: #90A3BF;
+}
+.blue-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #3563E9;
+  outline: none;
+}
+.price-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #596780;
+}
+
+.blue-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background: #3563E9;
+  cursor: pointer;
+}
+
+.blue-slider::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 3px solid white;
+  border-radius: 50%;
+  background: #3563E9;
+  cursor: pointer;
+}
+
+.blue-checkbox {
+  display: inline-block;
+  position: relative;
+  padding-left: 25px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  user-select: none;
+}
+.check-box {
+  -webkit-appearance: none;
+	border: 1px solid #cacece;
+	padding: 11px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+.check-box:active, .check-box:checked:active {
+  background: #0040ff;
+}
+
+.check-box:checked {
+  background: #3563E9;
+  border: 1px solid #FFFFFF;
+}
+.check-box:checked:after {
+	content: '\2714';
+	font-size: 12px;
+  color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+  transform: translate(-50%, -50%);
 }
 /* viewall */
 .viewall-container {
@@ -519,7 +620,87 @@ color: #1A202C;
 .viewall-main {
   display: flex;
   width: 100%;
+  background: #F6F7F9;
   gap: 20px;
   padding: 20px;
   flex-direction: column;
+}
+@media  screen and (width < 1700px) and (width > 1200px){
+  .main-flex {
+    align-items: center;
+    justify-content: center;
+  }
+}
+@media  screen and (width < 1100px){
+  .car-card {
+    flex: 1;
+  }
+}
+/* single view */ 
+.single-side-flex {
+  display: flex;
+}
+.single-container{
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+}
+.single-car-upper {
+  display: flex;
+  gap: 20px;
+}
+.car-catalouge {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+}
+.car-single-subphotos {
+  display: flex;
+  gap: 20px;
+}
+.car-single-subphotos div{
+  flex: 1;
+}
+.car-single-expanded-description {
+  flex: 1;
+  max-width: 640px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.card-single-description {  
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 200%;
+  color: #596780;
+}
+.car-attributes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.car-attributes p{
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  margin: 0;
+}
+.car-attr-flex {
+  flex: 1;
+  min-width: 40%;
+}
+.car-attr-flex-text {
+  display: flex;
+  justify-content: space-between;
+}
+.attr-label {
+  font-weight: 400;
+  font-size: 20px;
+  color: #90A3BF;
+}
+.attr-value {
+  font-weight: 600;
+  font-size: 20px;
+  color: #596780;
 }
