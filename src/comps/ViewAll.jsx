@@ -1,3 +1,5 @@
+import Sidebar from './Sidebar'
+import PickDrop from './PickDrop'
 import React, { useEffect, useState } from 'react'
 import likedActive from '../assets/Like.svg'
 import likedInactive from '../assets/LikedBlank.svg'
@@ -6,8 +8,7 @@ import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
 import koseg from '../assets/Koseg.svg'
 
-
-const Main = () => {
+export const ViewAll = () => {
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
@@ -26,12 +27,13 @@ const Main = () => {
         })
       }
   return (
-    <div className='main-container'>
-        <div className='popular-div'>
-           <div className='popular-header'>
-                <h3>Popular Cars</h3>
-                <a>View All</a>
-           </div>
+    <div className='viewall-container'>
+        <Sidebar/>
+        <div className='viewall-flex'>
+            <div className='viewall-main'>
+                <PickDrop/>
+                <div>
+                <div className='popular-div'>
            <div className='main-flex'>
                {testMap && testMap.map((item) => {
                 return (
@@ -82,9 +84,9 @@ const Main = () => {
                })}
            </div>
         </div>
-        
+                </div>
+            </div>
+        </div>
     </div>
   )
 }
-
-export default Main
