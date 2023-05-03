@@ -2,8 +2,12 @@
   background-color: #ffffff;
   position: relative;
   height: 100vh;
+  
 }
+p, a, h1, h2, h3{
+  font-family: 'Plus Jakarta Sans', sans-serif;
 
+}
 .container {
   max-width: 1440px;
   display: flex;
@@ -199,14 +203,129 @@
 /* Pick Drop */
 .pick-drop-container {
   display: flex;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
-.pickup-container {
-  width: 582px;
+.pickdrop-child-container {
+  max-width: 582px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   height: 132px;
   border-radius: 10px;
+  background-color: #ffffff;
 }
-.dropoff-container {
-  width: 582px;
-  height: 132px;
+
+.reverse-pick-btn {
+  width: 60px;
+  height: 60px;
+  background: #3563E9;
   border-radius: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.363);
+  transition: all .2s ease-in;
 }
+.reverse-pick-btn:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 7px 2px rgba(0, 0, 0, 0.363);
+  transform: translateY(-3px);
+}
+.pickdrop-settings-div {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.pickdrop-title {
+  display: flex;
+  gap: 5px;
+}
+.reverse {
+  flex-direction: row-reverse;
+}
+.settings-sub-div-border {
+  padding-left: 20px;
+  padding-right: 20px;
+  border-right: 1px solid rgba(195, 212, 233, 0.4);
+  border-left: 1px solid rgba(195, 212, 233, 0.4);
+}
+.pickdrop-title h3 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+}
+.pickdrop-settings-secondary-div {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.toggle-drop-settings-btn{
+  all: unset;
+  z-index: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 20px;
+  min-width: 20px;
+}
+
+.active {
+  rotate: -45deg;
+}
+.toggle-drop-settings-btn:hover{
+  cursor: pointer;
+}
+.settings-secondary-p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: #90A3BF;
+}
+.settings-title {
+  color: #1A202C;
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 150%;
+}
+/* main-car-cards */
+
+.main-container {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.popular-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.popular-header {
+  display: flex;
+  justify-content: space-between;
+}
+.popular-header h3{
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  color: #90A3BF;
+}
+.popular-header a{
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #3563E9;
+}
+
