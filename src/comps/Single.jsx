@@ -27,7 +27,7 @@ const Single = () => {
         <div className='single-container'>
         <div className='single-car-upper'>
             <div className='car-catalouge'>
-                <div className='ad1'>
+                <div className='ad2'>
                 <div className='adCircles'>
                         <span className='c1'></span>
                         <span className='c2'></span>
@@ -39,19 +39,24 @@ const Single = () => {
                         <h3>The Best Platform for Car Rental</h3>
                         <p>Ease of doing a car rental safely and reliably. Of course at a low price.</p>
                     </div>
-                    <button className='rental-car-ad-btn'><span>Rental Car</span></button>
                 </div>
                 <div className='car-single-subphotos'>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <div>
+                        <img></img>
+                    </div>
+                    <div>
+                        <img></img>
+                    </div>
+                    <div>
+                        <img></img>
+                    </div>
                 </div>
             </div>
             <div className='car-single-expanded-description'>
                 <div className='card-header'>
                     <div className='card-name-liked'>
                         <div>
-                            <p className='card-car-name'>car.name</p>
+                            <p className='single-car-name '>car.name</p>
                             <p className='card-car-type'>car.reviews</p>
                         </div>
                         <button 
@@ -99,7 +104,31 @@ const Single = () => {
             </div>
         </div>
         <div className='single-reviews'>
-
+            <div className='reviews-headers-div'>
+                <h3>Reviews</h3>
+                <span>13</span>
+            </div>
+            <div className='review-flex-div'>
+                <div className='review-comment-container'>
+                    <div className='review-comment-profile-container'>
+                        <a>p</a>
+                    </div>
+                    <div className='review-comment-main'>
+                        <div className='review-comment-main-upper'>
+                            <div className='review-comment-user'>
+                                <h3>comment.user</h3>
+                            </div>
+                            <div className='review-comment-information'>
+                                <p>comment.date</p>
+                                <p>stars</p>
+                            </div>
+                        </div>
+                        <div className='review-comment-main-lower'>
+                            <p className='review-comment-text'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore deleniti incidunt minus ipsum. Aliquid nulla similique mollitia suscipit harum minima a in? Dignissimos quisquam repudiandae nemo unde asperiores optio maxime?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         </div>            
     </div>
