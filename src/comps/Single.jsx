@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import likedActive from '../assets/Like.svg'
+import Main from './Main'
 import likedInactive from '../assets/LikedBlank.svg'
 import Sidebar from './Sidebar'
 import '../styles/single.css'
@@ -104,7 +105,7 @@ const Single = () => {
             </div>
         </div>
         <div className='single-reviews'>
-            <div className='reviews-headers-div'>
+            <div className='reviews-header-div'>
                 <h3>Reviews</h3>
                 <span>13</span>
             </div>
@@ -120,7 +121,7 @@ const Single = () => {
                             </div>
                             <div className='review-comment-information'>
                                 <p>comment.date</p>
-                                <p>stars</p>
+                                <span>stars</span>
                             </div>
                         </div>
                         <div className='review-comment-main-lower'>

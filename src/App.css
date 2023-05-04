@@ -1,3 +1,6 @@
+*{
+  font-family: 'Plus Jakarta Sans', sans-serif; 
+}
 .App {
   position: relative;
   height: 100vh;
@@ -637,12 +640,11 @@ color: #1A202C;
   }
 }
 /* single view */ 
-.single-side-flex {
-  display: flex;
-}
+
 .single-container{
   display: flex;
   padding: 20px;
+  gap: 20px;
   flex-direction: column;
 }
 .single-car-upper {
@@ -719,14 +721,64 @@ color: #1A202C;
 }
 .single-reviews {
   display: flex;
+  background: #FFFFFF;
+  padding: 25px;
+  border-radius: 10px;
   flex-direction: column;
 }
-.review-headers-div{
-  text-align: start;
+.reviews-header-div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.reviews-header-div span {
+  padding: 6px 15px;
+  color: white;
+  background: #3563E9;
+  border-radius: 4px;
 }
 .review-flex-div {
-
+  display: flex;
+  flex-direction: column;
 }
 .review-comment-container {
-
+  display: flex;
+  gap: 20px;
+}
+.review-comment-profile-container {
+  min-width: 80px;
+  display: flex;
+  justify-content: center;
+}
+.review-comment-profile-container a{
+  border-radius: 50%;
+  margin: 15px;
+  width: 56px;
+  height: 56px;
+  display: flex;
+}
+.review-comment-main {
+  display: flex;
+  flex-direction: column;
+}
+.review-comment-main-upper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.review-comment-user h3{
+  font-weight: 700;
+  margin: 0;
+  font-size: 20px;
+  color: #1A202C;  
+}
+.review-comment-information p{
+  font-size: 14px;
+  color: #90A3BF;
+}
+.review-comment-text {
+  font-weight: 400;
+  font-size: 14px;
+  color: #596780;
+  line-height: 200%;
 }
