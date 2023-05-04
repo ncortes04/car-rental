@@ -10,6 +10,7 @@ import Sidebar from './comps/Sidebar';
 import Footer from './comps/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ViewAll } from './comps/ViewAll';
+import Checkout from './comps/Checkout';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
                 <Route path='/viewall' 
               element={<ViewAll/>}/>
               <Route path='/single' element={<Single/>}/>
+              <Route path='/checkout' element={<Checkout/>}/>
             </Routes>
         <Footer/>
       </div>

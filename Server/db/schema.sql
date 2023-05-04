@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS rental_car;
+
+CREATE DATABASE rental_car;

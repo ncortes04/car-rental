@@ -3,7 +3,10 @@ import likedActive from '../assets/Like.svg'
 import Main from './Main'
 import likedInactive from '../assets/LikedBlank.svg'
 import Sidebar from './Sidebar'
+
 import '../styles/single.css'
+import Recent from './Recent'
+import Recommended from './Recommended'
 const Single = () => {
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
@@ -131,6 +134,8 @@ const Single = () => {
                 </div>
             </div>
         </div>
+        <Recent/>
+        <Recommended/>
         </div>            
     </div>
   )
