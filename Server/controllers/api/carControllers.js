@@ -15,7 +15,7 @@ module.exports = {
 // Delete a car / car/:id
 async deleteCar(req, res) {
     try {
-      const car = await Car.findByPk(req.params.id);
+      const car = await Car.findByPk(req.body.id);
       if (!car) {
         return res.status(404).json({ message: 'Car not found' });
       }

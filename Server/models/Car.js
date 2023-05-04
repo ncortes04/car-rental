@@ -33,12 +33,13 @@ Car.init(
           },
           isBooked: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
             defaultValue: false,
           },
           imageUrl: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
+            defaultValue: "N/A"
           },
           createdAt: {
             type: DataTypes.DATE,

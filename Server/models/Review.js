@@ -22,6 +22,14 @@ Reviews.init ({
     type: DataTypes.STRING,
     allowNull: false,
   },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  carId: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  }
 },
 {
     sequelize,

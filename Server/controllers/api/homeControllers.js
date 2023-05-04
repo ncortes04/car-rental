@@ -1,5 +1,5 @@
-const { Car, User, Reviews} = require('../models');
-const withAuth = require('../utils/auth');
+const { Car, User, Reviews} = require('../../models');
+const withAuth = require('../../utils/auth');
 //this is the ge route to get all the users
 module.exports = {
   // Get a car '/cars/:id', 

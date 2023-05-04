@@ -2,8 +2,9 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const carRoutes = require('./routes/carRoutes')
 const homeRoutes = require('./controllers');
-const userRoutes = require('./controllers/api')
+const userRoutes = require('./routes/userRoutes')
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -36,7 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use("/posts", homeRoutes);
+app.use(carRoutes);
 app.use("/users", userRoutes)
 
 sequelize.sync({ force: false }).then(() => {

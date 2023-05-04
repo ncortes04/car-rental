@@ -4,7 +4,6 @@ const { signToken } = require('../../utils/AUTH')
 //create new user
 module.exports = {
   async createUser(req, res) {
-    console.log("ajdlkajdlajsdlkasjdlkasjdlkasdjaslkdjasdlkjaslkjdaslkadsjlkadjlakdsjadjadlkasdjlkdaj", req.body)
     try {
       const userData = await User.create(req.body);
 
