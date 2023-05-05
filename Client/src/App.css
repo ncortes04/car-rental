@@ -367,6 +367,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  text-transform: capitalize;
 }
 .card-header {
   display: flex;

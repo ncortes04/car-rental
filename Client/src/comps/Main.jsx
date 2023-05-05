@@ -12,29 +12,7 @@ import { fetchCars } from '../actions/store';
 
 
 const Main = () => {
-  const dispatch = useDispatch();
-  const cars = useSelector((state) => state.cars);
-    const [liked, setLiked] = useState(() => {
-        const local = localStorage.getItem("liked")
-        return local ? JSON.parse(local) : {}
-      })
-      const handleLiked = (id) => {
-        setLiked(prevLiked => {
-          const newLiked = {...prevLiked}
-          if (newLiked[id]) {
-            delete newLiked[id]
-          } else {
-            newLiked[id] = true
-          }
-          localStorage.setItem("liked", JSON.stringify(newLiked))
-          return newLiked
-        })
-      }
-   
-      useEffect(() => {
-        dispatch(fetchCars());
-      }, [dispatch]);
-      console.log(cars)
+
   return (
     <div className='main-container'>
         <div className='popular-div'>

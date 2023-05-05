@@ -31,10 +31,21 @@ Car.init(
             type: DataTypes.FLOAT,
             allowNull: false,
           },
-          isBooked: {
-            type: DataTypes.BOOLEAN,
-            allowNull: true,
-            defaultValue: false,
+          type: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          transmission: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          capacity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+          },
+          tank: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
           },
           imageUrl: {
             type: DataTypes.STRING,
