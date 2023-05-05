@@ -7,14 +7,17 @@ import car from '../assets/Car.svg'
 import koseg from '../assets/Koseg.svg'
 import Recent from './Recent'
 import Recommended from './Recommended'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCars } from '../actions/store';
 
 
 const Main = () => {
+  const dispatch = useDispatch();
+  const cars = useSelector((state) => state.cars);
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
       })
-    const testMap = [1,2,3,4,5,6,7,8,9,]
       const handleLiked = (id) => {
         setLiked(prevLiked => {
           const newLiked = {...prevLiked}
@@ -27,6 +30,11 @@ const Main = () => {
           return newLiked
         })
       }
+   
+      useEffect(() => {
+        dispatch(fetchCars());
+      }, [dispatch]);
+      console.log(cars)
   return (
     <div className='main-container'>
         <div className='popular-div'>

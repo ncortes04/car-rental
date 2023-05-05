@@ -4,9 +4,13 @@ const {authMiddleware} = require('../utils/AUTH')
 const {
     addCar,
     updateCar,
-    deleteCar
+    getCarById,
+    deleteCar,
+    getAllCars
 } = require('../controllers/api/carControllers');
 
-router.route('/car').post(authMiddleware, addCar).delete(authMiddleware , deleteCar)
+router.route('/car').post(authMiddleware, addCar).delete(authMiddleware , deleteCar).get(getAllCars)
+router.route('/car/:id').post(getCarById)
+
 
 module.exports = router

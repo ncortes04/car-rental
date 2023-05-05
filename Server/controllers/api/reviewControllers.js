@@ -6,7 +6,7 @@ const { Reviews, User, Car } = require('../../models');
 module.exports = {
 // Create a new review for a car /reviews
 async createReview({user = null, body}, res){
-  console.log(body)
+  console.log(user)
   try {
     const { car_id, rating, comment } = body;
     const {id} = user

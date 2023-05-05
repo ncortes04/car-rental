@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import NavBar from './comps/navbar';
 import Header from './comps/Header';
 import PickDrop from './comps/PickDrop'

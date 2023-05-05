@@ -1,13 +1,18 @@
 const User = require('./User');
 const Car = require('./Car')
-const Booking = require('./Bookings')
+const Bookings = require('./Bookings')
 const Reviews = require('./Review');
 
 
 
-Booking.belongsTo(Car, {
+Bookings.belongsTo(Car, {
     foreignKey: 'car_id',
     onDelete: 'CASCADE'
+});
+Car.hasMany(Bookings,  {
+    foreignKey: 'car_id',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
 });
 
 Reviews.belongsTo(User, {
@@ -21,7 +26,8 @@ Reviews.belongsTo(Car, {
 })
 
 User.hasMany(Reviews, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
 })
 
 Car.hasMany(Reviews, {
@@ -29,4 +35,5 @@ Car.hasMany(Reviews, {
     onDelete: 'CASCADE'
 })
 
-module.exports = { User, Car, Reviews };
+
+module.exports = { User, Car, Reviews, Bookings };

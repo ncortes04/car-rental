@@ -1,5 +1,7 @@
 const express = require('express');
 const { Car } = require('../../models');
+const Bookings = require('../../models/Bookings');
+
 
 module.exports = {
 // Create a car /car
@@ -38,6 +40,31 @@ async updateCar(req, res) {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Server Error' });
+  }
+},
+async getCarById ({params}, res) {
+  try {
+    const car = await Car.findByPk(params.id, {
+      include: [
+        {
+          model: Bookings,
+          attributes: ['bookedDays']
+        }
+      ]
+    });
+    const bookedDays = car.Bookings.map(booking => booking.bookedDays).flat();
+    res.status(200).json(bookedDays);
+  } catch (err) {
+    console.error(err);
+  }
+},
+async getAllCars ({params}, res) {
+  console.log("dasdadlakdadlakdaslkdakdadadkada;ldakd;aldkasl;dkal;")
+  try {
+    const cars = await Car.findAll()
+    res.status(200).json(cars);
+  } catch (err) {
+    console.error(err);
   }
 },
 }

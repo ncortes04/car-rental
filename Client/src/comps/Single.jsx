@@ -1,17 +1,25 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import likedActive from '../assets/Like.svg'
 import Main from './Main'
 import likedInactive from '../assets/LikedBlank.svg'
 import Sidebar from './Sidebar'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCars } from '../actions/store';
 
 import '../styles/single.css'
 import Recent from './Recent'
 import Recommended from './Recommended'
 const Single = () => {
+    const dispatch = useDispatch();
+    const cars = useSelector((state) => state.cars);
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
       })
+      useEffect(() => {
+        dispatch(fetchCars());
+      }, [dispatch]);
+      console.log(cars)
     const testMap = [1,2,3,4,5,6,7,8,9,]
       const handleLiked = (id) => {
         setLiked(prevLiked => {
