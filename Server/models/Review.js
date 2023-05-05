@@ -22,11 +22,11 @@ Reviews.init ({
     type: DataTypes.STRING,
     allowNull: false,
   },
-  userId: {
+  user_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  carId: {
+  car_id: {
     type: DataTypes.INTEGER,
     allowNull: false
   }

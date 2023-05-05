@@ -2,7 +2,8 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-const carRoutes = require('./routes/carRoutes')
+const carRoutes = require('./routes/carRoutes');
+const reviewRoutes = require('./routes/reviewRoutes')
 const homeRoutes = require('./controllers');
 const userRoutes = require('./routes/userRoutes')
 
@@ -37,6 +38,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(reviewRoutes);
 app.use(carRoutes);
 app.use("/users", userRoutes)
 

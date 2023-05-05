@@ -5,15 +5,16 @@ const { Reviews, User, Car } = require('../../models');
 
 module.exports = {
 // Create a new review for a car /reviews
-async createReview(req, res){
+async createReview({user = null, body}, res){
+  console.log(body)
   try {
-    const { user_id, car_id, rating, comment } = req.body;
-
-    const review = await Review.create({
-      user_id,
-      car_id,
-      rating,
-      comment
+    const { car_id, rating, comment } = body;
+    const {id} = user
+    const review = await Reviews.create({
+      user_id: id,
+      car_id: car_id,
+      rating: rating,
+      comment: comment
     });
 
     res.status(201).json({ review });
@@ -25,7 +26,7 @@ async createReview(req, res){
 // Delete a review by its ID'/reviews/:id'
 async deleteReview(req, res){
   try {
-    const review = await Review.findByPk(req.params.id);
+    const review = await Reviews.findByPk(req.params.id);
 
     if (!review) {
       return res.status(404).json({ error: 'Review not found' });
@@ -42,7 +43,7 @@ async deleteReview(req, res){
 // Get all reviews for a car '/reviews/:carId'
 async getAllReviews(req, res) {
   try {
-    const reviews = await Review.findAll({
+    const reviews = await Reviews.findAll({
       where: { car_id: req.params.carId },
       include: [{ model: User, attributes: ['id', 'username'] }]
     });
