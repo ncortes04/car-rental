@@ -11,6 +11,7 @@ import Footer from './comps/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ViewAll } from './comps/ViewAll';
 import Checkout from './comps/Checkout';
+import Adminpanel from './comps/Adminpanel';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
               element={<ViewAll/>}/>
               <Route path='/single' element={<Single/>}/>
               <Route path='/checkout' element={<Checkout/>}/>
+              <Route path='/admin' element={<Adminpanel/>}/>
             </Routes>
         <Footer/>
       </div>

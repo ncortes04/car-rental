@@ -900,6 +900,9 @@ color: #1A202C;
 .pd1 {
   padding: 10px;
 }
+.pdb1{
+  padding-bottom: 10px;
+}
 .pd2 {
   padding: 20px;
 }
@@ -914,6 +917,9 @@ color: #1A202C;
 }
 .mg0 {
   margin: 0
+}
+.mg1{
+  margin: 10px;
 }
 .text-large {
   font-weight: 700;
@@ -963,4 +969,11 @@ color: #1A202C;
   .payment-input-container{
     flex: 1;
   }
+}
+/* admin panel */
+.label-secondary {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #90A3BF;
 }
