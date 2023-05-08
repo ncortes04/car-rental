@@ -343,6 +343,12 @@ button:hover {
   display: flex;
   color: #90A3BF;
 }
+.header-h3 {
+  font-weight: 700;
+  font-size: 20px;
+  color: #1A202C;
+  margin: 0;
+}
 .popular-header a{
   font-weight: 600;
   font-size: 16px;
@@ -897,6 +903,9 @@ color: #1A202C;
 .br1{
   border-radius: 10px;
 }
+.bd1 {
+  border: 1px solid
+}
 .pd1 {
   padding: 10px;
 }
@@ -920,6 +929,19 @@ color: #1A202C;
 }
 .mg1{
   margin: 10px;
+}
+.bb-grey {
+  border-bottom: 1px solid rgba(195, 212, 233, 0.4); ;
+}
+.text-bold {
+font-weight: 600;
+font-size: 14px;
+color: #1A202C;
+}
+.text-light {
+  font-weight: 600;
+  font-size: 14px;
+  color: #90A3BF;
 }
 .text-large {
   font-weight: 700;
@@ -976,4 +998,15 @@ color: #1A202C;
   font-weight: 600;
   font-size: 12px;
   color: #90A3BF;
+}
+.top-car-rental-div {
+  display: flex;
+  justify-content: space-between;
+}
+.recent-transaction-card {
+  display: flex;
+  justify-content: space-between;
+}
+.red {
+  background-color: red;
 }
