@@ -3,24 +3,46 @@ import likedActive from '../assets/Like.svg'
 import Main from './Main'
 import likedInactive from '../assets/LikedBlank.svg'
 import Sidebar from './Sidebar'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCars } from '../actions/store';
-
+import { useParams } from 'react-router-dom';
+import { getIndividual, addComment, deleteComment } from "../utils/apiRoutes"
+import goldStar from'../assets/ic-actions-star.svg'
+import blankStar from'../assets/ic-actions-star-blank.svg'
 import '../styles/single.css'
 import Recent from './Recent'
 import Recommended from './Recommended'
 const Single = () => {
-    const dispatch = useDispatch();
-    const cars = useSelector((state) => state.cars);
+    const [loading, setLoading] = useState(true)
+    const [showCommentInput, setShowCommentInput] = useState(false);
+    const [newComment, setNewComment] = useState('');
+    const [singleItem, setsingleItem] = useState({});
+    const [reviews, setReviews] = useState([])
+    const [bookings, setBookings] = useState([])
+
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
       })
+      const {id} = useParams();
+      const getItems = async () => {
+        setLoading(true)
+        const response = await getIndividual(id);
+  
+        const item = await response.json();
+        await setReviews(item.car.Reviews)
+        await setBookings(item.bookedDays)
+        setsingleItem(item.car);
+        setLoading(false)
+    };
+
       useEffect(() => {
-        dispatch(fetchCars());
-      }, [dispatch]);
-      console.log(cars)
-    const testMap = [1,2,3,4,5,6,7,8,9,]
+        getItems();
+      }, [id]);
+
+      function currentTime(date){
+          const options = { year: "numeric", month: "long", day: "numeric", hour:"numeric", minute: 'numeric'}
+          return new Date(date).toLocaleDateString(undefined, options)
+      }
+
       const handleLiked = (id) => {
         setLiked(prevLiked => {
           const newLiked = {...prevLiked}
@@ -32,6 +54,30 @@ const Single = () => {
           localStorage.setItem("liked", JSON.stringify(newLiked))
           return newLiked
         })
+      }
+      const handleCommentInputChange = (e) => {
+        setNewComment(e.target.value);
+      };
+    
+      const handleAddComment = () => {
+        // add your code to post new comment here
+        setShowCommentInput(false); // hide the input field after submitting the comment
+        setNewComment(''); // clear the input field
+      };
+    
+      const getStar = function(limit){
+        let res = []
+        for(let i = 0; i < 5; i ++){
+            if(i < limit) {
+                res.push(
+                    <img src={goldStar}></img>
+
+                )
+            } else {
+                res.push(<img src={blankStar}></img>)
+            }
+        }
+        return res
       }
   return (
     <div className='single-side-flex'>
@@ -114,34 +160,76 @@ const Single = () => {
                     </button>
                 </div>
             </div>
-        </div>
+        </div>                
         <div className='single-reviews'>
-            <div className='reviews-header-div'>
-                <h3>Reviews</h3>
-                <span>13</span>
-            </div>
-            <div className='review-flex-div'>
+      <div className='reviews-header-div'>
+        <h3>Reviews</h3>
+        <span>{reviews.length}</span>
+      </div>
+      {reviews.length <= 0 ? (
+        <h3>No Reviews Yet, Be The first</h3>
+      ) : (
+        <>
+          {reviews.map((review) => {
+            return (
+              <div className='review-flex-div'>
                 <div className='review-comment-container'>
-                    <div className='review-comment-profile-container'>
-                        <a>p</a>
+                  <div className='review-comment-profile-container'>
+                    <a className='profile-icon'>
+                      {review.user.name.charAt(0)}
+                    </a>
+                  </div>
+                  <div className='review-comment-main wd100'>
+                    <div className='review-comment-main-upper'>
+                      <div className='review-comment-user'>
+                        <h3>{review.user.name}</h3>
+                        <p className='text-light'>Verified Buyer</p>
+                      </div>
+                      <div className='review-comment-information'>
+                        <p>{currentTime(review.createdAt)}</p>
+                        <div>{getStar(review.rating)}</div>
+                      </div>
                     </div>
-                    <div className='review-comment-main'>
-                        <div className='review-comment-main-upper'>
-                            <div className='review-comment-user'>
-                                <h3>comment.user</h3>
-                            </div>
-                            <div className='review-comment-information'>
-                                <p>comment.date</p>
-                                <span>stars</span>
-                            </div>
-                        </div>
-                        <div className='review-comment-main-lower'>
-                            <p className='review-comment-text'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore deleniti incidunt minus ipsum. Aliquid nulla similique mollitia suscipit harum minima a in? Dignissimos quisquam repudiandae nemo unde asperiores optio maxime?</p>
-                        </div>
+                    <div className='review-comment-main-lower wd100'>
+                      <p className='review-comment-text'>{review.comment}</p>
                     </div>
+                  </div>
                 </div>
+              </div>
+            );
+          })}
+          {showCommentInput ? (
+            <div className='review-flex-div'>
+              <div className='review-comment-container'>
+                <div className='review-comment-main wd100'>
+                  <div className='review-comment-main-upper'>
+                    <div className='review-comment-information'>
+                      <button onClick={handleAddComment}>Submit</button>
+                    </div>
+                  </div>
+                  <div className='review-comment-main-lower wd100'>
+                    <textarea
+                      placeholder='Add a comment...'
+                      value={newComment}
+                      onChange={handleCommentInputChange}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
+          ) : (
+            <div className='add-comment-button-container'>
+              <button
+                className='add-comment-button'
+                onClick={() => setShowCommentInput(true)}
+              >
+                Add a comment
+              </button>
+            </div>
+          )}
+        </>
+      )}
+    </div>
         <Recent/>
         <Recommended/>
         </div>            

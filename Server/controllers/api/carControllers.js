@@ -1,5 +1,5 @@
 const express = require('express');
-const { Car } = require('../../models');
+const { Car, Reviews, User } = require('../../models');
 const Bookings = require('../../models/Bookings');
 
 
@@ -49,20 +49,24 @@ async getCarById ({params}, res) {
         {
           model: Bookings,
           attributes: ['bookedDays']
+        },
+        {
+          model: Reviews,
+          attributes: ['comment', 'createdAt', 'rating'],
+          include: {model: User, attributes: ['name', 'id']}
         }
       ]
     });
     const bookedDays = car.Bookings.map(booking => booking.bookedDays).flat();
-    res.status(200).json(bookedDays);
+    res.status(200).json({bookedDays, car});
   } catch (err) {
     console.error(err);
   }
 },
 async getAllCars ({params}, res) {
-  console.log("dasdadlakdadlakdaslkdakdadadkada;ldakd;aldkasl;dkal;")
   try {
-    const cars = await Car.findAll()
-    res.status(200).json(cars);
+    const allCars = await Car.findAll()
+    res.status(200).json({allCars});
   } catch (err) {
     console.error(err);
   }

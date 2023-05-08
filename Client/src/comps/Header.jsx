@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div className='header-container'>
+    <div className='header-container gap2'>
         <div className='ad1'>
         <div className='adCircles'>
                 <span className='c1'></span>

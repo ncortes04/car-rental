@@ -1,6 +1,14 @@
-import React from 'react'
-
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCurrentUser } from '../actions/userActions';
 const NavBar = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
+
+  const currentUser = useSelector((state) => state.user);
   return (
     <div className='navContainer'>
         <h1><span>Rental</span>Car</h1>

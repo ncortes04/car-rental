@@ -6,15 +6,18 @@ import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
 import koseg from '../assets/Koseg.svg'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCars } from '../actions/store';
+import { getAllCars } from '../actions/carActions';
+import { useNavigate } from 'react-router-dom';
 
 const Recommended = () => {
     const dispatch = useDispatch();
-    const cars = useSelector((state) => state.cars);
-     
-        useEffect(() => {
-          dispatch(fetchCars());
-        }, [dispatch]);    
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      dispatch(getAllCars());
+    }, [dispatch]);
+  
+    const cars = useSelector((state) => state.allCars);
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
@@ -31,8 +34,8 @@ const Recommended = () => {
           return newLiked
         })
       }
-      var handlePageRelocate = function() {
-
+      var handlePageRelocate = function(itemId) {
+        navigate(`/single/${itemId}`);
       }
    
   return (
@@ -83,7 +86,7 @@ const Recommended = () => {
                 <div className='car-card-footer'>
                     <p className='car-footer-price'>$99.00 /<span>day</span></p>
                     <button 
-                    onClick={handlePageRelocate}
+                    onClick={() => {handlePageRelocate(item.id)}}
                     className='car-footer-button'>
                         Rent Now
                     </button>

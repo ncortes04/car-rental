@@ -1,3 +1,4 @@
+import authService from './auth'
 export const register = async (formData) => {
     return await fetch(`/users/signup`, {
             method: 'POST',
@@ -21,3 +22,18 @@ export const register = async (formData) => {
     },
   });
   }
+  export const getSingle = async () => {
+    return fetch(`/users/me`, {
+     method: 'GET',
+     headers: { 'Content-Type': 'application/json',
+     authorization: `Bearer ${authService.getToken()}`,
+   },
+ });
+}
+export const getIndividual = async (id) => {
+  return await fetch(`/car/${id}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json',
+  },
+});
+}

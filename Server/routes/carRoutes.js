@@ -10,7 +10,7 @@ const {
 } = require('../controllers/api/carControllers');
 
 router.route('/car').post(authMiddleware, addCar).delete(authMiddleware , deleteCar).get(getAllCars)
-router.route('/car/:id').post(getCarById)
+router.route('/car/:id').get(getCarById)
 
 
 module.exports = router

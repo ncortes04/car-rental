@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ViewAll } from './comps/ViewAll';
 import Checkout from './comps/Checkout';
 import Adminpanel from './comps/Adminpanel';
+import Login from './comps/login';
 
 function App() {
 
@@ -31,9 +32,10 @@ function App() {
                 </div>}/>
                 <Route path='/viewall' 
               element={<ViewAll/>}/>
-              <Route path='/single' element={<Single/>}/>
+              <Route path='/single/:id' element={<Single/>}/>
               <Route path='/checkout' element={<Checkout/>}/>
               <Route path='/admin' element={<Adminpanel/>}/>
+              <Route path='/login' element={<Login/>}/>
             </Routes>
         <Footer/>
       </div>

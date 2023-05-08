@@ -43,11 +43,7 @@ module.exports = {
     }
   },
   async getSingleUser({ user = null, params }, res) {
-    const foundUser = await User.findOne({ where: { email: user.email } ,include:[
-      {model: Post}
-    ]
-    });
-    
+    const foundUser = await User.findByPk(user.id, {attributes: ['name', 'id']});
     if (!foundUser) {
       return res.status(400).json({ message: 'Cannot find a user with this id!' });
     }

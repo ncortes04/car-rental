@@ -7,8 +7,6 @@ import car from '../assets/Car.svg'
 import koseg from '../assets/Koseg.svg'
 import Recent from './Recent'
 import Recommended from './Recommended'
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCars } from '../actions/store';
 
 
 const Main = () => {
