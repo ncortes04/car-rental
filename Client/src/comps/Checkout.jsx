@@ -1,6 +1,8 @@
-import React, {useState} from 'react'
-
+import React, {useState, useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 const Checkout = () => {
+    const checkout = useSelector(state => state.checkout);
+    console.log(checkout)
     const [inputs, setInputs] = useState({
         name: '',
         phoneNumber: '',

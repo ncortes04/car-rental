@@ -10,6 +10,10 @@ Reviews.init ({
     autoIncrement: true,
     primaryKey: true,
   },
+  header: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   rating: {
     type: DataTypes.INTEGER,
     allowNull: false,

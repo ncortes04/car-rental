@@ -43,6 +43,18 @@ Car.init(
             type: DataTypes.INTEGER,
             allowNull: false,
           },
+          description: {
+            type: DataTypes.STRING,
+            allowNull: false
+          },
+          averageRating: {
+            type: DataTypes.FLOAT,
+            defaultValue: 0
+          },
+          ratingCount: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0
+          },
           tank: {
             type: DataTypes.INTEGER,
             allowNull: false,

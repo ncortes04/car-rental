@@ -1,9 +1,10 @@
-import { combineReducers } from 'redux';
-import carsReducer from './carReducer';
-import userReducer from './userReducer';
-
+import { combineReducers } from "redux";
+import userReducer from "./userReducers";
+import checkoutReducer from "./checkoutReducers";
+import carReducer from './carReducers'
 const rootReducer = combineReducers({
-  cars: carsReducer,
+  car: carReducer,
+  checkout: checkoutReducer,
   user: userReducer,
 });
 

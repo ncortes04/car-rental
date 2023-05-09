@@ -19,7 +19,17 @@ export const register = async (formData) => {
     return await fetch(`/car/`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json',
+      authorization: `Bearer ${authService.getToken()}`,
     },
+  });
+  }
+  export const getCarBookings = async (car_id) => {
+    return await fetch(`/bookings`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json',
+      authorization: `Bearer ${authService.getToken()}`,
+    },
+    body: JSON.stringify({car_id})
   });
   }
   export const getSingle = async () => {
@@ -37,3 +47,12 @@ export const getIndividual = async (id) => {
   },
 });
 }
+export const addReview = async (id, comment, rating, header) => {
+    return await fetch(`/review`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+        authorization: `Bearer ${authService.getToken()}`,
+      },
+      body: JSON.stringify({comment, car_id: id, rating, header})
+    });
+  }

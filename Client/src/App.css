@@ -766,7 +766,29 @@ color: #1A202C;
   display: flex;
   justify-content: center;
 }
-
+.input-large {
+  background-color: #FFFFFF;
+  border: 1px solid;
+  padding: 20px;
+  border-radius: 10px;
+}
+.input-small {
+  background-color: #FFFFFF;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 50%;
+}
+.review-submit-btn {
+  max-width: 116px;
+  border: none;
+  height: 44px;
+  background: #3563E9;
+  font-weight: 700;
+  font-size: 16px;
+  color: #FFFFFF;
+  border-radius: 4px;
+}
 .review-comment-main {
   display: flex;
   flex-direction: column;
@@ -926,6 +948,12 @@ color: #1A202C;
 }
 .shorflex1 {
   flex: 1;
+}
+.alignc {
+  align-items: center;
+}
+.justc {
+  justify-content: center;
 }
 .spaceb {
   justify-content: space-between;
@@ -1176,4 +1204,8 @@ color: #90A3BF;
   .input-form {
       background-color: red;
   }
+}
+/* calendar */
+.calendar-container {
+  max-width: 50%;;
 }

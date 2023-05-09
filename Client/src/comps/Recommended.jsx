@@ -6,18 +6,18 @@ import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
 import koseg from '../assets/Koseg.svg'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCars } from '../actions/carActions';
+import { getAllCars } from '../actions/carsActions';
 import { useNavigate } from 'react-router-dom';
 
 const Recommended = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     useEffect(() => {
       dispatch(getAllCars());
     }, [dispatch]);
   
-    const cars = useSelector((state) => state.allCars);
+    const cars = useSelector((state) => state.car.cars);
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}

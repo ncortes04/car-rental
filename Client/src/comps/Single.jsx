@@ -4,20 +4,23 @@ import Main from './Main'
 import likedInactive from '../assets/LikedBlank.svg'
 import Sidebar from './Sidebar'
 import { useParams } from 'react-router-dom';
-import { getIndividual, addComment, deleteComment } from "../utils/apiRoutes"
+import { getIndividual, addComment, deleteComment, addReview } from "../utils/apiRoutes"
 import goldStar from'../assets/ic-actions-star.svg'
 import blankStar from'../assets/ic-actions-star-blank.svg'
+import CalendarComponent from "./calendar";
 import '../styles/single.css'
 import Recent from './Recent'
 import Recommended from './Recommended'
+import Review from './Review'
 const Single = () => {
     const [loading, setLoading] = useState(true)
     const [showCommentInput, setShowCommentInput] = useState(false);
-    const [newComment, setNewComment] = useState('');
     const [singleItem, setsingleItem] = useState({});
     const [reviews, setReviews] = useState([])
     const [bookings, setBookings] = useState([])
+    const [calendarDate, setCalendarDate] = useState(false)
 
+  
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
@@ -55,16 +58,7 @@ const Single = () => {
           return newLiked
         })
       }
-      const handleCommentInputChange = (e) => {
-        setNewComment(e.target.value);
-      };
-    
-      const handleAddComment = () => {
-        // add your code to post new comment here
-        setShowCommentInput(false); // hide the input field after submitting the comment
-        setNewComment(''); // clear the input field
-      };
-    
+ 
       const getStar = function(limit){
         let res = []
         for(let i = 0; i < 5; i ++){
@@ -79,13 +73,15 @@ const Single = () => {
         }
         return res
       }
+
   return (
     <div className='single-side-flex'>
          <Sidebar/>
+         
         <div className='single-container'>
         <div className='single-car-upper'>
             <div className='car-catalouge'>
-                <div className='ad2'>
+                <div className='car-'>
                 <div className='adCircles'>
                         <span className='c1'></span>
                         <span className='c2'></span>
@@ -155,85 +151,82 @@ const Single = () => {
                 </div>
                 <div className='car-card-footer'>
                     <p className='car-footer-price'>$99.00 /<span>day</span></p>
-                    <button className='car-footer-button'>
-                        Rent Now
+                    <button 
+                    className='car-footer-button'
+                    onClick={() => setCalendarDate(true)}>
+                        Check Availability
                     </button>
                 </div>
             </div>
-        </div>                
+        </div>          
+        <div>
+        {calendarDate 
+        ?
+            <div className='calendar-container'>
+                    <CalendarComponent id={id} />
+            </div>
+        : null
+         }
+        </div>
         <div className='single-reviews'>
-      <div className='reviews-header-div'>
-        <h3>Reviews</h3>
-        <span>{reviews.length}</span>
-      </div>
-      {reviews.length <= 0 ? (
-        <h3>No Reviews Yet, Be The first</h3>
-      ) : (
-        <>
-          {reviews.map((review) => {
-            return (
-              <div className='review-flex-div'>
-                <div className='review-comment-container'>
-                  <div className='review-comment-profile-container'>
-                    <a className='profile-icon'>
-                      {review.user.name.charAt(0)}
-                    </a>
-                  </div>
-                  <div className='review-comment-main wd100'>
-                    <div className='review-comment-main-upper'>
-                      <div className='review-comment-user'>
-                        <h3>{review.user.name}</h3>
-                        <p className='text-light'>Verified Buyer</p>
-                      </div>
-                      <div className='review-comment-information'>
-                        <p>{currentTime(review.createdAt)}</p>
-                        <div>{getStar(review.rating)}</div>
-                      </div>
-                    </div>
-                    <div className='review-comment-main-lower wd100'>
-                      <p className='review-comment-text'>{review.comment}</p>
-                    </div>
-                  </div>
+            <div className='reviews-header-div spaceb'>
+                <div className='flex gap2 alignc'>
+                    <h3>Reviews</h3>
+                     <span>{reviews.length}</span>
                 </div>
-              </div>
-            );
-          })}
-          {showCommentInput ? (
-            <div className='review-flex-div'>
-              <div className='review-comment-container'>
-                <div className='review-comment-main wd100'>
-                  <div className='review-comment-main-upper'>
-                    <div className='review-comment-information'>
-                      <button onClick={handleAddComment}>Submit</button>
-                    </div>
-                  </div>
-                  <div className='review-comment-main-lower wd100'>
-                    <textarea
-                      placeholder='Add a comment...'
-                      value={newComment}
-                      onChange={handleCommentInputChange}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
             <div className='add-comment-button-container'>
-              <button
-                className='add-comment-button'
-                onClick={() => setShowCommentInput(true)}
-              >
-                Add a comment
-              </button>
+                <button
+                    className='car-footer-button'
+                    onClick={() => setShowCommentInput(!showCommentInput)}
+                >
+                    Add a comment
+                </button>
             </div>
-          )}
-        </>
-      )}
-    </div>
-        <Recent/>
-        <Recommended/>
-        </div>            
-    </div>
+        </div>
+        {reviews.length <= 0 ? (
+                    <h3>No Reviews Yet, Be The first</h3>
+                ) : (
+                    <>
+                        {reviews.map((review) => {
+                            return (
+                            <div className='review-flex-div'>
+                                <div className='review-comment-container'>
+                                <div className='review-comment-profile-container'>
+                                    <a className='profile-icon'>
+                                    {review.user.name.charAt(0)}
+                                    </a>
+                                </div>
+                                <div className='review-comment-main wd100'>
+                                    <div className='review-comment-main-upper'>
+                                    <div className='review-comment-user'>
+                                        <h3>{review.user.name}</h3>
+                                        <p className='text-light'>Verified Buyer</p>
+                                    </div>
+                                    <div className='review-comment-information'>
+                                        <p>{currentTime(review.createdAt)}</p>
+                                        <div>{getStar(review.rating)}</div>
+                                    </div>
+                                    </div>
+                                    <div className='review-comment-main-lower wd100'>
+                                    <p className='review-comment-text'>{review.comment}</p>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                            );
+                        })}
+                    </>
+                )}
+            <div>
+            {showCommentInput 
+            ? <Review setShowCommentInput={setShowCommentInput} id={id} />
+            : null}
+             </div>
+        </div>
+            <Recent/>
+            <Recommended/>
+            </div>            
+        </div>
   )
 }
 

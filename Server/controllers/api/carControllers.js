@@ -47,10 +47,6 @@ async getCarById ({params}, res) {
     const car = await Car.findByPk(params.id, {
       include: [
         {
-          model: Bookings,
-          attributes: ['bookedDays']
-        },
-        {
           model: Reviews,
           attributes: ['comment', 'createdAt', 'rating'],
           include: {model: User, attributes: ['name', 'id']}
@@ -59,6 +55,21 @@ async getCarById ({params}, res) {
     });
     const bookedDays = car.Bookings.map(booking => booking.bookedDays).flat();
     res.status(200).json({bookedDays, car});
+  } catch (err) {
+    console.error(err);
+  }
+},
+async getCarBookings ({body}, res) {
+  try {
+    const car = await Car.findByPk(body.car_id, {
+      include: [
+        {
+          model: Bookings,
+          attributes: ['bookedDays']
+        },]
+    });
+    const bookedDays = car.Bookings.map(booking => booking.bookedDays).flat();
+    res.status(200).json({bookedDays});
   } catch (err) {
     console.error(err);
   }

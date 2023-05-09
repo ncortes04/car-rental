@@ -6,17 +6,26 @@ const { Reviews, User, Car } = require('../../models');
 module.exports = {
 // Create a new review for a car /reviews
 async createReview({user = null, body}, res){
-  console.log(user)
   try {
-    const { car_id, rating, comment } = body;
+    const { car_id, rating, comment, header } = body;
+    const car = await Car.findByPk(car_id);
     const {id} = user
     const review = await Reviews.create({
       user_id: id,
       car_id: car_id,
       rating: rating,
-      comment: comment
+      comment: comment,
+      header: header,
     });
-
+    if (!car) {
+      res.status(404).json({ message: 'Car not found' });
+      return;
+    }
+    const prevAverage = car.averageRating
+    const numReviews = car.ratingCount;
+    const averageRating = (prevAverage + rating) / (numReviews + 1)
+   
+    await car.update({ averageRating: averageRating, ratingCount: numReviews + 1 });
     res.status(201).json({ review });
   } catch (error) {
     console.log(error);
