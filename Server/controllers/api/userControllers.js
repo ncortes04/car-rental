@@ -9,7 +9,7 @@ module.exports = {
 
       const token = await signToken(userData)
 
-      res.status(200).json({token})
+      res.status(200).json({token, id: userData.id})
     } catch (err) {
       console.log(err)
       res.status(400).json(err);
@@ -36,7 +36,7 @@ module.exports = {
   
       const token = await signToken(userData)
       console.log(userData)
-      res.status(200).json({token})
+      res.status(200).json({token, foundUser: {id:userData.id, name: userData.name}})
 
     } catch (err) {
       res.status(400).json(err);

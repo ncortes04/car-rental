@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { fetchUser } from '../features/user';
 const NavBar = () => {
   const dispatch = useDispatch();
-
-  const currentUser = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
   return (
     <div className='navContainer'>
         <h1><span>Rental</span>Car</h1>

@@ -1,29 +1,30 @@
 import React, { useRef, useState } from 'react';
 import { register, login } from '../utils/apiRoutes'
+import { useNavigate } from 'react-router-dom';
 import authService from '../utils/auth'
 import Koseg from '../assets/Koseg.svg'
 function Login(){
+    const navigate = useNavigate()
     const [toggleRegister, setToggleRegister] = useState("login")
     const [userFormData, setUserFormData] = useState({ email: '', name: '', password: '' });
              if(authService.loggedIn()){
-                 console.log('Redirecting..')
-                 window.location.assign('/')
+                navigate(`/`);
             }
             const handleInputChange = (event) => {
                 const { name, value } = event.target;
                 setUserFormData({ ...userFormData, [name]: value });
             };
-
          const handleSubmit = async (event) => {
                 event.preventDefault()
-        
+
             try {
                 let response;
                 if(toggleRegister === 'register'){
                     response = await register(userFormData);
+                } else {
+                    response = await login(userFormData);
                 }
-               response = await login(userFormData);
-        
+
               if (!response.ok) {
                 throw new Error('something went wrong!');
               }

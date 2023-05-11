@@ -3,8 +3,6 @@ const Car = require('./Car')
 const Bookings = require('./Bookings')
 const Reviews = require('./Review');
 
-
-
 Bookings.belongsTo(Car, {
     foreignKey: 'car_id',
     onDelete: 'CASCADE'

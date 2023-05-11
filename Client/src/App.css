@@ -222,6 +222,16 @@ button:hover {
   font-size: 16px;
   white-space: nowrap;
 }
+.btn-danger {
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+  width: 120px;
+  height: 44px;  
+  background: red;
+  border: none;
+  border-radius: 4px;
+}
 .second {
   background: #54A6FF;
 }
@@ -460,6 +470,15 @@ color: #1A202C;
   margin: 0;
   font-size: 14px;
   color: #90A3BF;
+}
+.button-primary {
+  width: 116px;
+  border: none;
+  height: 44px;
+  background: #3563E9;
+  font-size: 16px;
+  color: #FFFFFF;
+  border-radius: 4px;
 }
 .car-footer-button {
   width: 116px;
@@ -741,6 +760,12 @@ color: #1A202C;
   border-radius: 10px;
   flex-direction: column;
 }
+.review-comment-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  color: #1A202C;
+}
 .reviews-header-div{
   display: flex;
   align-items: center;
@@ -931,6 +956,15 @@ color: #1A202C;
 .bd1 {
   border: 1px solid
 }
+.pd0 {
+  padding: 0;
+}
+.mgb1 {
+  margin-bottom: 10px;
+}
+.mgb2 {
+  margin-bottom: 20px;
+}
 .pd1 {
   padding: 10px;
 }
@@ -966,6 +1000,9 @@ color: #1A202C;
 }
 .bb-grey {
   border-bottom: 1px solid rgba(195, 212, 233, 0.4); ;
+}
+.bb-black {
+  border-bottom: 1px solid
 }
 .text-bold {
 font-weight: 600;
@@ -1030,6 +1067,33 @@ color: #1A202C;
 .menu-side-container {
   min-width: 280px;
 }
+
+.admin-input {
+  min-width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: start;
+}
+.admin-input input {
+  background-color: #F6F7F9;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+.admin-input textarea {
+  flex: 1;
+  background-color: #F6F7F9;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+}
+.admin-dropdown {
+  background-color: #F6F7F9;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+} 
 .admin-side-top {
   display: flex;
   flex-direction: column;

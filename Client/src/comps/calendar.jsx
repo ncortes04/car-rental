@@ -3,7 +3,6 @@ import { DateRangePicker } from 'react-date-range';
 import { getCarBookings } from '../utils/apiRoutes';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { setStartDate } from '../actions/checkoutActions';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
@@ -19,14 +18,8 @@ const Calendar = ({ id }) => {
       key: 'selection',
     },
   ]);
-  const dispatch = useDispatch();
 
-  const handleStartDateChange = () => {
-    dispatch(setStartDate("newStartDate"));
-  }
-  const checkout = useSelector(state => state.checkout);
-  console.log(checkout)
-  handleStartDateChange()
+
   const handlePageRelocate = function(itemId) {
     navigate(`/checkout/`);
   };

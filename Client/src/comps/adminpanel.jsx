@@ -1,9 +1,50 @@
-import React from 'react'
-
+import React,{useState} from 'react'
+import { addCar } from '../utils/apiRoutes';
 const Adminpanel = () => {
+    const [toggleCar, setToggleCar] = useState(false)
+    const [carInfo, setCarInfo] = useState({
+      year: '',
+      color: '',
+      dailyPrice: '',
+      image: '',
+      tank: '',
+      type: '',
+      capacity: '',
+      transmission: '',
+      description: ''
+    });
+  
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setCarInfo(prevCarInfo => ({
+        ...prevCarInfo,
+        [name]: value
+      }));
+    }
+  
+    const handleSubmit = async (e) => {
+     try {
+        const response = await addCar(carInfo)
+        const data = await response.json()
+        console.log(data)
+     } catch (e) {
+        console.error(e)
+     }
+     setCarInfo({      
+      year: '',
+      color: '',
+      dailyPrice: '',
+      image: '',
+      tank: '',
+      type: '',
+      capacity: '',
+      transmission: '',
+      description: ''
+    })
+    }
   return (
     <div className='flex'>
-        <div className=' menu-side-container flex col pd2 white'>
+        <div className=' menu-side-container flex col pd2 white red'>
             <div className='admin-side-top wd100'>
                 <label className='pdb1 label-secondary'>MAIN MENU</label>
                 <div className=" admin-menu-text shorflex1 br1"><span></span><p>Dashboard</p></div>
@@ -21,9 +62,76 @@ const Adminpanel = () => {
             <p>Logout</p>
         </div>
         <div className='admin-panel-container'>
-          <div className=' flex shorflex1'>
+          <div className=' flex gap2 shorflex1 pd2'>
             {/* details rental container */}
-            <div className='white shorflex1 flex col'>
+            <div className='white shorflex1 flex col br1'>
+                <div className='payment-body pd2'>
+                    <div className='pd1 br1 header-container'>
+                      <h3 className='header-h3'>Add A New Car</h3>
+                    </div>
+                    <div className='admin-input'>
+                        <label>Make</label>
+                        <input name='make' placeholder='Car Make' value={carInfo.make} onChange={handleInputChange}></input>
+                    </div>
+                    <div className='admin-input'>
+                        <label>Model</label>
+                        <input name='model' placeholder='Car Model' value={carInfo.model} onChange={handleInputChange}></input>
+                    </div>
+                    <div className='admin-input'>
+                      <label>transmission</label>
+                      <select className='admin-dropdown' name='transmission' value={carInfo.transmission} onChange={handleInputChange}>
+                        <option value=''>Select Transmission</option>
+                        <option value='automatic'>Automatic</option>
+                        <option value='manual'>Manual</option>
+                        <option value='CVT'>CVT</option>
+                      </select>
+                    </div>
+                    <div className='admin-input'>
+                      <label>Capacity</label>
+                      <select className='admin-dropdown' name='capacity' value={carInfo.transmission} onChange={handleInputChange}>
+                        <option value=''>Select Capacity</option>
+                        <option value='2'>2</option>
+                        <option value='4'>4</option>
+                        <option value='6'>6</option>
+                        <option value='8+'>8+</option>
+                      </select>
+                    </div>
+                    <div className='admin-input'>
+                      <label>Type</label>
+                      <select className='admin-dropdown' name='type' value={carInfo.type} onChange={handleInputChange}>
+                        <option value=''>Select Capacity</option>
+                        <option value='sport'>Sport</option>
+                        <option value='muscle'>Muscle</option>
+                        <option value='offroad'>Offroad</option>
+                        <option value='hatchback'>Hatchback+</option>
+                      </select>
+                    </div>
+                    <div className='admin-input'>
+                        <label>Year</label>
+                        <input name='year' placeholder='Car Year' value={carInfo.year} onChange={handleInputChange}></input>
+                    </div>
+                    <div className='admin-input'>
+                        <label>Color</label>
+                        <input name='color' placeholder='Car Color' value={carInfo.color} onChange={handleInputChange}></input>
+                    </div>
+                    <div className='admin-input'>
+                        <label>Daily Price</label>
+                        <input name='dailyPrice' placeholder='Car Price' value={carInfo.dailyPrice} onChange={handleInputChange}></input>
+                    </div>
+                    <div className='admin-input'>
+                        <label>Tank</label>
+                        <input name='tank' placeholder='Car Tank' value={carInfo.tank} onChange={handleInputChange}></input>
+                    </div>
+                    <div className='admin-input'>
+                        <label>Image</label>
+                        <input name='image' placeholder='Car Image' value={carInfo.image} onChange={handleInputChange}></input>
+                    </div>
+                    <div className='admin-input'>
+                        <label>Description</label>
+                        <textarea name='description' placeholder='Car description' value={carInfo.description} onChange={handleInputChange}></textarea>
+                    </div>
+               </div>
+               <button className=' mg1 button-primary' onClick={() => handleSubmit()}>Add Car</button>
               <div className='pd1 br1 header-container'>
                 <h3 className='header-h3'>Details Rental</h3>
               </div>
@@ -50,7 +158,7 @@ const Adminpanel = () => {
               </div>
             </div>
             <div className='bg-grey flex shorflex1 col gap2'>
-              <div className='br1 pd2 white shorflex1 bd1'>
+              <div className='br1 pd2 white shorflex1'>
                 <div className='header-container'>
                   <h3 className='header-h3'>Top 5 Car rentals</h3>
                 </div>
@@ -100,7 +208,7 @@ const Adminpanel = () => {
                       </div>
                 </div>
               </div>
-              <div className='white br1 pd2 shorflex1 bd1'>
+              <div className='white br1 pd2 shorflex1'>
                 <div className='header-container'>
                   <h3 className='header-h3'>Recent Transactions</h3>
                 </div>

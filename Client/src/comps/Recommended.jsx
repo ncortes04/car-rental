@@ -6,18 +6,20 @@ import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
 import koseg from '../assets/Koseg.svg'
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllCars } from '../actions/carsActions';
 import { useNavigate } from 'react-router-dom';
+import { fetchCars } from '../features/cars';
+import {fetchUser} from '../features/user';
+import authService from '../utils/auth'
+
 
 const Recommended = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
-
     useEffect(() => {
-      dispatch(getAllCars());
-    }, [dispatch]);
-  
-    const cars = useSelector((state) => state.car.cars);
+        dispatch(fetchCars());
+    }, []);
+
+    const cars = useSelector((state) => state.car.value);
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
@@ -34,7 +36,14 @@ const Recommended = () => {
           return newLiked
         })
       }
-      var handlePageRelocate = function(itemId) {
+      var handlePageRelocate = function(itemId, index) {
+        const carsLocal = JSON.parse(localStorage.getItem('cars')) || [];
+        const carToStore = cars[index];
+        if(carsLocal.length == 4){
+           carsLocal.pop()
+        }
+        carsLocal.unshift(carToStore);
+        localStorage.setItem('cars', JSON.stringify(carsLocal));
         navigate(`/single/${itemId}`);
       }
    
@@ -45,7 +54,7 @@ const Recommended = () => {
                 <h3>Recommended Cars</h3>
            </div>
         </div>
-        {cars && cars.map((item) => {
+        {cars && cars.map((item, index) => {
         return (
             <div className='car-card'>
             <div className='card-header'>
@@ -86,7 +95,7 @@ const Recommended = () => {
                 <div className='car-card-footer'>
                     <p className='car-footer-price'>$99.00 /<span>day</span></p>
                     <button 
-                    onClick={() => {handlePageRelocate(item.id)}}
+                    onClick={() => {handlePageRelocate(item.id, index)}}
                     className='car-footer-button'>
                         Rent Now
                     </button>

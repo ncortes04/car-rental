@@ -1,5 +1,5 @@
 import { getRole } from "./apiRoutes";
-
+import { getSingle } from "./apiRoutes"; 
 class AuthService {
     getToken(){
         return localStorage.getItem('id_token');
@@ -9,7 +9,15 @@ class AuthService {
     }
     login(idToken) {
         localStorage.setItem('id_token', idToken);
-        window.location.assign('/');
+    }
+    async getMe() {
+        const token = this.getToken;
+        if (!token) {
+            return null;
+        }
+        const user = await getSingle(token)
+        const data = await user.json()
+        return data
     }
     logout(){
         localStorage.removeItem('id_token')

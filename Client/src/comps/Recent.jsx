@@ -5,8 +5,20 @@ import gasoline from '../assets/gas-station.svg'
 import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
 import koseg from '../assets/Koseg.svg'
+import { useNavigate } from 'react-router-dom';
 
 const Recent = () => {
+    const navigate = useNavigate()
+    const [storedValue, setStoredValue] = useState(() => {
+        try {
+          const item = window.localStorage.getItem("cars");
+          return item ? JSON.parse(item) : [];
+        } catch (error) {
+          console.log(error);
+          return [];
+        }
+      });
+      console.log(storedValue)
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
@@ -23,7 +35,11 @@ const Recent = () => {
           return newLiked
         })
       }
-    const testMap = [1,2,3]
+      var handlePageRelocate = function(itemId,) {
+        navigate(`/single/${itemId}`);
+      }
+   
+    const testMap = []
   return (
     <div className='main-flex'>
         <div className='popular-div'>
@@ -31,14 +47,14 @@ const Recent = () => {
                 <h3>Recent Cars</h3>
            </div>
         </div>
-        {testMap && testMap.map((item) => {
+        {storedValue && storedValue.map((item, index) => {
         return (
             <div className='car-card'>
             <div className='card-header'>
                 <div className='card-name-liked'>
                     <div>
-                        <p className='card-car-name'>car.name</p>
-                        <p className='card-car-type'>car.type</p>
+                        <p className='card-car-name'>{item.make} {item.model}</p>
+                        <p className='card-car-type'>{item.type}</p>
                     </div>
                     <button 
                     onClick={() => handleLiked("123212")}
@@ -57,21 +73,23 @@ const Recent = () => {
                     <div className='card-secondary-info'>
                         <div>
                             <img src={gasoline}></img>
-                            <p>24Gal</p>
+                            <p>{item.tank}G</p>
                         </div>
                         <div>
                             <img src={car}></img>
-                            <p>Manuak</p>
+                            <p>{item.transmission}</p>
                         </div>
                         <div>
                             <img src={people}></img>
-                            <p>2 People</p>
+                            <p>{item.capacity} Person</p>
                         </div>
                     </div>
                 </div>
                 <div className='car-card-footer'>
                     <p className='car-footer-price'>$99.00 /<span>day</span></p>
-                    <button className='car-footer-button'>
+                    <button 
+                    onClick={() => {handlePageRelocate(item.id)}}
+                    className='car-footer-button'>
                         Rent Now
                     </button>
                 </div>

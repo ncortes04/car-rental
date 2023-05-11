@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { addReview } from "../utils/apiRoutes"
 import goldStar from'../assets/ic-actions-star.svg'
 import blankStar from'../assets/ic-actions-star-blank.svg'
+import { useSelector } from 'react-redux'
 const Review = ({setShowCommentInput, id}) => {  
     const [rating, setRating] = useState(0);
     const [final, setFinal] = useState(0)

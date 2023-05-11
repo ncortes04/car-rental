@@ -47,6 +47,15 @@ export const getIndividual = async (id) => {
   },
 });
 }
+export const addCar = async (formData) => {
+  return await fetch(`/car`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json',
+      authorization: `Bearer ${authService.getToken()}`,
+    },
+    body: JSON.stringify(formData)
+  });
+}
 export const addReview = async (id, comment, rating, header) => {
     return await fetch(`/review`, {
         method: 'POST',
@@ -54,5 +63,14 @@ export const addReview = async (id, comment, rating, header) => {
         authorization: `Bearer ${authService.getToken()}`,
       },
       body: JSON.stringify({comment, car_id: id, rating, header})
+    });
+  }
+  export const deleteReview = async (id) => {
+    return await fetch(`/review`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json',
+        authorization: `Bearer ${authService.getToken()}`,
+      },
+      body: JSON.stringify({id})
     });
   }

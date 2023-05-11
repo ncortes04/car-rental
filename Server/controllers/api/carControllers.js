@@ -48,13 +48,12 @@ async getCarById ({params}, res) {
       include: [
         {
           model: Reviews,
-          attributes: ['comment', 'createdAt', 'rating'],
+          attributes: ['id', 'comment', 'createdAt', 'rating', 'header'],
           include: {model: User, attributes: ['name', 'id']}
         }
       ]
     });
-    const bookedDays = car.Bookings.map(booking => booking.bookedDays).flat();
-    res.status(200).json({bookedDays, car});
+    res.status(200).json({car});
   } catch (err) {
     console.error(err);
   }

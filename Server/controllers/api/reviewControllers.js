@@ -33,10 +33,13 @@ async createReview({user = null, body}, res){
   }
 },
 // Delete a review by its ID'/reviews/:id'
-async deleteReview(req, res){
+async deleteReview({user = null, body}, res){
   try {
-    const review = await Reviews.findByPk(req.params.id);
-
+    console.log(user)
+    const review = await Reviews.findByPk(body.id);
+    if(user.id !== review.user_id){
+      return res.status(403).json({ error: 'Access Denied' });
+    }
     if (!review) {
       return res.status(404).json({ error: 'Review not found' });
     }

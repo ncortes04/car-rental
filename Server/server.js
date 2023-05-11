@@ -5,7 +5,7 @@ const exphbs = require('express-handlebars');
 const carRoutes = require('./routes/carRoutes');
 const bookingsRoutes = require('./routes/bookingsRoute')
 const reviewRoutes = require('./routes/reviewRoutes')
-const homeRoutes = require('./controllers');
+const purchaseRoutes = require('./routes/adminRoutes')
 const userRoutes = require('./routes/userRoutes')
 
 const sequelize = require('./config/connection');
@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bookingsRoutes)
 app.use(reviewRoutes);
 app.use(carRoutes);
+app.use(purchaseRoutes)
 app.use("/users", userRoutes)
 
 sequelize.sync({ force: false }).then(() => {
