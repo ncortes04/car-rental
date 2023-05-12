@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('your-sequelize-instance');
+const Car = require('./Car')
+const sequelize = require('../config/connection');
 
 class Purchase extends Model {}
 
@@ -9,7 +10,11 @@ Purchase.init({
     primaryKey: true,
     autoIncrement: true
   },
-  carId: {
+  car_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  bookingId: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
@@ -17,13 +22,10 @@ Purchase.init({
     type: DataTypes.STRING,
     allowNull: false
   },
-  purchaseDate: {
-    type: DataTypes.DATE,
-    allowNull: false
-  }
 }, {
   sequelize,
   modelName: 'purchase'
 });
+Purchase.belongsTo(Car);
 
 module.exports = Purchase;

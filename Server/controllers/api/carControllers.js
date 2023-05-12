@@ -64,8 +64,9 @@ async getCarBookings ({body}, res) {
       include: [
         {
           model: Bookings,
-          attributes: ['bookedDays']
-        },]
+          attributes: ['bookedDays'],
+        },
+      ],
     });
     const bookedDays = car.Bookings.map(booking => booking.bookedDays).flat();
     res.status(200).json({bookedDays});

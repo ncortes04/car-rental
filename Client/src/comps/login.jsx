@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { register, login } from '../utils/apiRoutes'
 import { useNavigate } from 'react-router-dom';
 import authService from '../utils/auth'
-import Koseg from '../assets/Koseg.svg'
+import Koseg from '../assets/koenigsegg.svg'
 function Login(){
     const navigate = useNavigate()
     const [toggleRegister, setToggleRegister] = useState("login")
@@ -40,7 +40,11 @@ function Login(){
                 password: '',
               });
           };
-        
+        const setToggle = function(e){
+            const { name } = e.target
+            e.preventDefault()
+            setToggleRegister(name)
+        }
 
     return(
         <div className='login-container'>
@@ -63,11 +67,11 @@ function Login(){
                 <div className='user-registration-div'>
                     <button 
                         className={toggleRegister === "login" ? "active": null} 
-                        value={"login"} 
-                        onClick={(e) => {setToggleRegister(e.target.value); e.preventDefault()}}>SIGN IN</button>
+                        name="login"
+                        onClick={(e) => {setToggle(e)}}>SIGN IN</button>
                     <button
-                        className={toggleRegister === "register" ? "active": null} value={"register"} 
-                        onClick={(e) => {setToggleRegister(e.target.value);e.preventDefault()}}>SIGN UP</button>
+                        className={toggleRegister === "register" ? "active": null} name='register' 
+                        onClick={(e) => {setToggle(e)}}>SIGN UP</button>
                 </div>
                 <div className='input-div'>
                     {toggleRegister === "register"

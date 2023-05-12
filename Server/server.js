@@ -41,7 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bookingsRoutes)
 app.use(reviewRoutes);
 app.use(carRoutes);
-app.use(purchaseRoutes)
+app.use("/admin", purchaseRoutes)
 app.use("/users", userRoutes)
 
 sequelize.sync({ force: false }).then(() => {

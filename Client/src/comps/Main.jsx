@@ -4,19 +4,19 @@ import likedInactive from '../assets/LikedBlank.svg'
 import gasoline from '../assets/gas-station.svg'
 import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
-import koseg from '../assets/Koseg.svg'
 import Recent from './Recent'
 import Recommended from './Recommended'
+import { useNavigate } from 'react-router'
 
 
 const Main = () => {
-
+  const navigate = useNavigate()
   return (
     <div className='main-container'>
         <div className='popular-div'>
            <div className='popular-header'>
                 <h3>Popular Cars</h3>
-                <a href='/viewall'>View All</a>
+                <a onClick={() => { navigate('viewall')}}>View All</a>
            </div>
           <Recent/>
           <Recommended/>

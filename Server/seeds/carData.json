@@ -1,0 +1,107 @@
+[
+    {
+        "make": "ford",
+        "model": "F-150",
+        "year": 2020,
+        "color": "black",
+        "dailyPrice": 150,
+        "type": "sport",
+        "transmission": "automatic",
+        "capacity": 2,
+        "description": "great Car",
+        "tank": 16,
+        "imageUrl": "F-150"
+    },
+    {
+      "make": "nissaan",
+      "model": "GT-R",
+      "year": 2022,
+      "color": "white",
+      "dailyPrice": 300,
+      "type": "sport",
+      "transmission": "automatic",
+      "capacity": 2,
+      "description": "The Nissan Gt-R is a reliable and versatile Sprts Car.",
+      "tank": 15,
+      "imageUrl": "gt-r"
+    },
+    {
+        "make": "honda",
+        "model": "CR-v",
+        "year": 2022,
+        "color": "white",
+        "dailyPrice": 100,
+        "type": "suv",
+        "transmission": "automatic",
+        "capacity": 5,
+        "description": "The Honda CR-V is a reliable and versatile SUV.",
+        "tank": 15,
+        "imageUrl": "cr-v"
+      },
+    {
+      "make": "koenigsegg",
+      "model": "koenigsegg",
+      "year": 2023,
+      "color": "silver",
+      "dailyPrice": 1000,
+      "type": "supercar",
+      "transmission": "automatic",
+      "capacity": 2,
+      "description": "Experience the ultimate thrill with the Koenigsegg supercar.",
+      "tank": 20,
+      "imageUrl": "koenigsegg"
+    },
+    {
+      "make": "rolls-royce",
+      "model": "rolls-royce",
+      "year": 2022,
+      "color": "black",
+      "dailyPrice": 500,
+      "type": "luxury",
+      "transmission": "automatic",
+      "capacity": 4,
+      "description": "Indulge in luxury and elegance with the Rolls-Royce.",
+      "tank": 18,
+      "imageUrl": "rolls-royce"
+    },
+    {
+      "make": "daihatsu",
+      "model": "all new terios",
+      "year": 2022,
+      "color": "red",
+      "dailyPrice": 80,
+      "type": "compact suv",
+      "transmission": "automatic",
+      "capacity": 8,
+      "description": "The All New Terios offers comfort and versatility for your adventures.",
+      "tank": 14,
+      "imageUrl": "all-new-terios"
+    },
+    {
+        "make": "mg",
+        "model": "mgzx exclusive",
+        "year": 2022,
+        "color": "red",
+        "dailyPrice": 80,
+        "type": "compact suv",
+        "transmission": "automatic",
+        "capacity": 8,
+        "description": "The MGZX Exclusive offers comfort and versatility for your adventures.",
+        "tank": 14,
+        "imageUrl": "mgzx-exclusive"
+      },
+    {
+      "make": "mg",
+      "model": "new mgzs",
+      "year": 2022,
+      "color": "blue",
+      "dailyPrice": 90,
+      "type": "hatchback",
+      "transmission": "automatic",
+      "capacity": 6,
+      "description": "Experience style and performance with the New MGZS.",
+      "tank": 12,
+      "imageUrl": "new-mgzs"
+    }
+  ]
+  

@@ -10,7 +10,8 @@ import 'react-date-range/dist/theme/default.css';
 const Calendar = ({ id }) => {
   const [bookedDays, setBookedDays] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate()
+  const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
   const [dateRange, setDateRange] = useState([
     {
       startDate: new Date(),
@@ -19,25 +20,30 @@ const Calendar = ({ id }) => {
     },
   ]);
 
-
-  const handlePageRelocate = function(itemId) {
+  const handlePageRelocate = () => {
     navigate(`/checkout/`);
   };
-  
+
   useEffect(() => {
-    async function fetchBookings() {
+    const fetchBookings = async () => {
       try {
         setIsLoading(true);
         const response = await getCarBookings(id);
-        const data = await response.json();
-        const bookings = data.bookedDays.map(date => new Date(date));
-        setBookedDays(bookings);
-        setIsLoading(false);
+        if (response.ok) {
+          const data = await response.json();
+          const bookings = data.bookedDays.map(date => new Date(date));
+          setBookedDays(bookings);
+          setIsLoading(false);
+        } else {
+          setIsLoading(false);
+          setIsError(true);
+        }
       } catch (error) {
         console.log(error);
         setIsLoading(false);
+        setIsError(true);
       }
-    }
+    };
 
     if (id && bookedDays.length === 0) {
       fetchBookings();
@@ -47,11 +53,13 @@ const Calendar = ({ id }) => {
   const handleSelect = (ranges) => {
     setDateRange([ranges.selection]);
   };
-  console.log(dateRange)
+
   return (
     <div className='flex'>
       {isLoading ? (
-        <p>Loading...</p>
+        <div className='loading-spinner'></div> // Replace with your loading spinner component
+      ) : isError ? (
+        <p>Error occurred while fetching bookings.</p>
       ) : (
         <DateRangePicker
           ranges={dateRange}
@@ -61,7 +69,13 @@ const Calendar = ({ id }) => {
         />
       )}
       <div>
-        <button onClick={handlePageRelocate} className='review-submit-btn'>asdsdsdsdadkaskjdlk</button>
+        <button
+          onClick={handlePageRelocate}
+          className='review-submit-btn'
+          disabled={!dateRange[0].startDate || !dateRange[0].endDate || bookedDays.includes(dateRange[0].startDate)}
+        >
+          asdsdsdsdadkaskjdlk
+        </button>
       </div>
     </div>
   );

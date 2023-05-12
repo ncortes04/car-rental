@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 const Car = require('../models/Car');
-const dataTypes = require('sequelize/lib/data-types');
 
 class Bookings extends Model {}
 

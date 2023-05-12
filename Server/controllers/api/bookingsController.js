@@ -2,11 +2,11 @@
 const express = require('express');
 const { Car } = require('../../models');
 const Bookings = require('../../models/Bookings');
-
+const Purchase = require('../../models/Purchases')
 
 module.exports = {
     //'/cars/:carId/bookings
-    async createBooking ({body, params}, res) {
+    async createBooking ({user, body, params}, res) {
         try {
           // Get the car with the specified ID
           const car = await Car.findByPk(params.carId);
@@ -19,9 +19,12 @@ module.exports = {
           // Create a new booking with the specified dates
           const booking = await Bookings.create({
             car_id: carId,
-            startDate: startDate,
-            endDate: endDate,
             bookedDays: bookingArr,
+          });
+          await Purchase.create({
+            car_id: carId,
+            bookingId: booking.id,
+            buyerName: user.name,
           });
       
           return res.status(201).json({ booking });

@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import userReducers from './features/user'
 import carReducers from './features/cars'
+import "@fontsource/plus-jakarta-sans"
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const store = configureStore ({
   reducer:{

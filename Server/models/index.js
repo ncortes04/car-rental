@@ -2,7 +2,17 @@ const User = require('./User');
 const Car = require('./Car')
 const Bookings = require('./Bookings')
 const Reviews = require('./Review');
+const Purcahse = require('./Purchases');
 
+
+
+Purcahse.hasOne(Bookings, {
+    foreignKey: 'purcahseID',
+    as: 'booking'
+  });
+Bookings.belongsTo(Purcahse, {
+    foreignKey: 'purcahseID'
+  });
 Bookings.belongsTo(Car, {
     foreignKey: 'car_id',
     onDelete: 'CASCADE'

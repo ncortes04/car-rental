@@ -74,3 +74,20 @@ export const addReview = async (id, comment, rating, header) => {
       body: JSON.stringify({id})
     });
   }
+  export const getTop5 = async () => {
+    return await fetch(`/admin/top`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+        authorization: `Bearer ${authService.getToken()}`,
+      },
+    });
+  }
+  export const getRecent = async () => {
+    return await fetch(`/admin/recent`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+        authorization: `Bearer ${authService.getToken()}`,
+      },
+    });
+  }
+  

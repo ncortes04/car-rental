@@ -4,7 +4,6 @@ import likedInactive from '../assets/LikedBlank.svg'
 import gasoline from '../assets/gas-station.svg'
 import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
-import koseg from '../assets/Koseg.svg'
 import { useNavigate } from 'react-router-dom';
 
 const Recent = () => {
@@ -65,7 +64,7 @@ const Recent = () => {
             </div>
                 <div className='card-main-img-div'>
                     <div className='img-shadow-box'>
-                        <img src={koseg}></img>
+                        <img></img>
                         <span className='shadow'></span>
                     </div>
                 </div>
@@ -86,7 +85,7 @@ const Recent = () => {
                     </div>
                 </div>
                 <div className='car-card-footer'>
-                    <p className='car-footer-price'>$99.00 /<span>day</span></p>
+                    <p className='car-footer-price'>${item.dailyPrice} /<span>day</span></p>
                     <button 
                     onClick={() => {handlePageRelocate(item.id)}}
                     className='car-footer-button'>

@@ -13,12 +13,13 @@ import { ViewAll } from './comps/ViewAll';
 import Checkout from './comps/Checkout';
 import Adminpanel from './comps/Adminpanel';
 import Login from './comps/login';
-
+import PieChart from './comps/PieChart';
 function App() {
 
   return (
     <Router>
     <div className="App" >
+     
         <NavBar/> 
           <Routes>
             <Route path='/' 

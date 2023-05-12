@@ -1,7 +1,8 @@
-import React,{useState} from 'react'
-import { addCar } from '../utils/apiRoutes';
+import React,{useState, useEffect} from 'react'
+import { addCar, getTop5, getRecent } from '../utils/apiRoutes';
+import Top5 from './Top5';
+
 const Adminpanel = () => {
-    const [toggleCar, setToggleCar] = useState(false)
     const [carInfo, setCarInfo] = useState({
       year: '',
       color: '',
@@ -13,7 +14,27 @@ const Adminpanel = () => {
       transmission: '',
       description: ''
     });
-  
+    const [statistics, setStatistics] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const topResponse = await getTop5()
+        const topData = await topResponse.json();
+        const recentResponse = await getRecent()
+        const recentData = await recentResponse.json();
+        setStatistics({topData, recentData});
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  function currentTime(date){
+    const options = { year: "numeric", month: "long", day: "numeric", hour:"numeric", minute: 'numeric'}
+    return new Date(date).toLocaleDateString(undefined, options)
+}
     const handleInputChange = (e) => {
       const { name, value } = e.target;
       setCarInfo(prevCarInfo => ({
@@ -42,6 +63,7 @@ const Adminpanel = () => {
       description: ''
     })
     }
+    console.log(statistics.recentData)
   return (
     <div className='flex'>
         <div className=' menu-side-container flex col pd2 white red'>
@@ -64,11 +86,12 @@ const Adminpanel = () => {
         <div className='admin-panel-container'>
           <div className=' flex gap2 shorflex1 pd2'>
             {/* details rental container */}
-            <div className='white shorflex1 flex col br1'>
-                <div className='payment-body pd2'>
-                    <div className='pd1 br1 header-container'>
-                      <h3 className='header-h3'>Add A New Car</h3>
-                    </div>
+            <div className='shorflex1'>
+            <div className='white  shorflex1 flex col br1 pd2'>
+                <div className='add-car-container pd2'>
+                   <div className='mg0 br1 header-container'>
+                      <h3 className='header-h3 '>Add A New Car</h3>
+                  </div>
                     <div className='admin-input'>
                         <label>Make</label>
                         <input name='make' placeholder='Car Make' value={carInfo.make} onChange={handleInputChange}></input>
@@ -78,7 +101,7 @@ const Adminpanel = () => {
                         <input name='model' placeholder='Car Model' value={carInfo.model} onChange={handleInputChange}></input>
                     </div>
                     <div className='admin-input'>
-                      <label>transmission</label>
+                      <label>Transmission</label>
                       <select className='admin-dropdown' name='transmission' value={carInfo.transmission} onChange={handleInputChange}>
                         <option value=''>Select Transmission</option>
                         <option value='automatic'>Automatic</option>
@@ -132,7 +155,7 @@ const Adminpanel = () => {
                     </div>
                </div>
                <button className=' mg1 button-primary' onClick={() => handleSubmit()}>Add Car</button>
-              <div className='pd1 br1 header-container'>
+              {/* <div className='pd1 br1 header-container'>
                 <h3 className='header-h3'>Details Rental</h3>
               </div>
               <div className='directions-container shorflex1'>
@@ -155,77 +178,33 @@ const Adminpanel = () => {
                         <p className='text-secondary'>order.num</p>
                         </div>
                   </div>
-              </div>
+              </div> */}
+            </div>
             </div>
             <div className='bg-grey flex shorflex1 col gap2'>
-              <div className='br1 pd2 white shorflex1'>
-                <div className='header-container'>
-                  <h3 className='header-h3'>Top 5 Car rentals</h3>
-                </div>
-                <div className='flex'>
-                  <div className='shorflex1'>s</div>
-                  <div className='shorflex1'>
-                        <div className='shorflex1'>
-
-                        </div>
-                        <div className='shorflex1 flex col gap1'>
-                            <div className="top-car-rental-div">
-                              <div className='flex gap1'>
-                                  <span></span>
-                                  <p className='text-light'>Sports Car</p>
-                              </div>
-                              <p className='text-bold'>14,212</p>
-                            </div>
-                            <div className="top-car-rental-div">
-                              <div className='flex gap1'>
-                                  <span></span>
-                                  <p className='text-light'>Sports Car</p>
-                              </div>
-                              <p className='text-bold'>14,212</p>
-                            </div>
-                            <div className="top-car-rental-div">
-                              <div className='flex gap1'>
-                                  <span></span>
-                                  <p className='text-light'>Sports Car</p>
-                              </div>
-                              <p className='text-bold'>14,212</p>
-                            </div>
-                            <div className="top-car-rental-div">
-                              <div className='flex gap1'>
-                                  <span></span>
-                                  <p className='text-light'>Sports Car</p>
-                              </div>
-                              <p className='text-bold'>14,212</p>
-                            </div>
-                            <div className="top-car-rental-div">
-                              <div className='flex gap1'>
-                                  <span></span>
-                                  <p className='text-light'>Sports Car</p>
-                              </div>
-                              <p className='text-bold'>14,212</p>
-                            </div>
-                        </div>
-                      </div>
-                </div>
-              </div>
+                <Top5 topData={statistics.topData}/>
               <div className='white br1 pd2 shorflex1'>
                 <div className='header-container'>
                   <h3 className='header-h3'>Recent Transactions</h3>
                 </div>
                 <div className='flex col'>
-                    <div className='recent-transaction-card bb-grey'>
+                  {statistics.recentData && statistics.recentData.recentPurchases.map(purchase => {
+                    return(
+                      <div className='recent-transaction-card bb-grey'>
                       <div className='flex'>
                         <img className='red shorflex1'></img>
                         <div className='flex col'>
-                            <p className='text-bold'>car.name</p>
-                            <p className='text-light'>car.type</p>
+                            <p className='text-bold'>{purchase.Car.make} {purchase.Car.model}</p>
+                            <p className='text-light'>{purchase.Car.type}</p>
                         </div>
                       </div>
                       <div className='flex col'>
-                          <p className='text-light'>19 July</p>
-                          <p className='text-bold'>$99.00</p>
+                          <p className='text-light'>{currentTime(purchase.Car.createdAt)}</p>
+                          <p className='text-bold'>${purchase.Car.dailyPrice}</p>
                       </div>
                     </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>

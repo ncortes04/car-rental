@@ -4,13 +4,11 @@ import likedInactive from '../assets/LikedBlank.svg'
 import gasoline from '../assets/gas-station.svg'
 import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
-import koseg from '../assets/Koseg.svg'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchCars } from '../features/cars';
 import {fetchUser} from '../features/user';
-import authService from '../utils/auth'
-
+import {importImage} from '../utils/helperFunction'
 
 const Recommended = () => {
     const navigate = useNavigate()
@@ -19,11 +17,12 @@ const Recommended = () => {
         dispatch(fetchCars());
     }, []);
 
-    const cars = useSelector((state) => state.car.value);
+    const cars = useSelector((state) => state.car.unfilteredData);
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
       })
+      console.log(cars)
     const handleLiked = (id) => {
         setLiked(prevLiked => {
           const newLiked = {...prevLiked}
@@ -46,7 +45,7 @@ const Recommended = () => {
         localStorage.setItem('cars', JSON.stringify(carsLocal));
         navigate(`/single/${itemId}`);
       }
-   
+ 
   return (
     <div className='main-flex'>
          <div className='popular-div'>
@@ -58,21 +57,22 @@ const Recommended = () => {
         return (
             <div className='car-card'>
             <div className='card-header'>
-                <div className='card-name-liked'>
-                    <div>
-                        <p className='card-car-name'>{item.make} {item.model}</p>
-                        <p className='card-car-type'>{item.type}</p>
-                    </div>
-                    <button 
+                <div className='card-name-liked flex col'>
+                <p className='card-car-make'>{item.make}</p>
+                    <div className='flex spaceb'>
+                        <p className='card-car-name'>{item.model}</p>
+                        <button 
                     onClick={() => handleLiked("123212")}
                     className='liked-btn'>
                         <img src={liked["123212"] ? likedActive : likedInactive }></img>
                     </button>
+                    </div>
+                <p className='card-car-type'>{item.type}</p>
                 </div>
             </div>
                 <div className='card-main-img-div'>
                     <div className='img-shadow-box'>
-                        <img src={koseg}></img>
+                        <img src={importImage(item.imageUrl)} alt={item.imageUrl} />
                         <span className='shadow'></span>
                     </div>
                 </div>
@@ -93,7 +93,7 @@ const Recommended = () => {
                     </div>
                 </div>
                 <div className='car-card-footer'>
-                    <p className='car-footer-price'>$99.00 /<span>day</span></p>
+                    <p className='car-footer-price'>${item.dailyPrice} /<span>day</span></p>
                     <button 
                     onClick={() => {handlePageRelocate(item.id, index)}}
                     className='car-footer-button'>

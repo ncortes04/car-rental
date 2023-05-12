@@ -91,14 +91,7 @@ const Single = () => {
         <div className='single-container'>
         <div className='single-car-upper'>
             <div className='car-catalouge'>
-                <div className='car-'>
-                <div className='adCircles'>
-                        <span className='c1'></span>
-                        <span className='c2'></span>
-                        <span className='c3'></span>
-                        <span className='c4'></span>
-                        <span className='c5'></span>
-                    </div>
+                <div className='car-ad'>
                     <div className='ad-text'>
                         <h3>The Best Platform for Car Rental</h3>
                         <p>Ease of doing a car rental safely and reliably. Of course at a low price.</p>
