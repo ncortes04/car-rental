@@ -3,14 +3,17 @@ import { DateRangePicker } from 'react-date-range';
 import { getCarBookings } from '../utils/apiRoutes';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
+import { setCar, setCheckoutBookedDays } from '../features/checkout';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
-const Calendar = ({ id }) => {
+const Calendar = ({ id, singleCar }) => {
   const [bookedDays, setBookedDays] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [dateRange, setDateRange] = useState([
     {
@@ -20,9 +23,7 @@ const Calendar = ({ id }) => {
     },
   ]);
 
-  const handlePageRelocate = () => {
-    navigate(`/checkout/`);
-  };
+  const [selectedDates, setSelectedDates] = useState([]);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -44,7 +45,6 @@ const Calendar = ({ id }) => {
         setIsError(true);
       }
     };
-
     if (id && bookedDays.length === 0) {
       fetchBookings();
     }
@@ -52,6 +52,30 @@ const Calendar = ({ id }) => {
 
   const handleSelect = (ranges) => {
     setDateRange([ranges.selection]);
+  
+    const start = ranges.selection.startDate;
+    const end = ranges.selection.endDate;
+    const dates = [];
+    let currentDate = new Date(start);
+    while (currentDate <= end) {
+      const formattedDate = currentDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      });
+      dates.push(formattedDate);
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    setSelectedDates(dates);
+  };
+  const joe = useSelector(state => state)
+  console.log(joe)
+  const handlePageRelocate = () => {
+  
+    dispatch(setCheckoutBookedDays(selectedDates));
+    dispatch(setCar(singleCar));
+
+    navigate(`/checkout/`);
   };
 
   return (

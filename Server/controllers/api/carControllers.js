@@ -1,7 +1,8 @@
 const express = require('express');
 const { Car, Reviews, User } = require('../../models');
 const Bookings = require('../../models/Bookings');
-
+const Purchase = require('../../models/Purchases');
+const sequelize = require('../../config/connection')
 
 module.exports = {
 // Create a car /car
@@ -17,12 +18,12 @@ module.exports = {
 // Delete a car / car/:id
 async deleteCar(req, res) {
     try {
-      const car = await Car.findByPk(req.body.id);
+      const car = await Car.findByPk(req.body.car_id);
       if (!car) {
         return res.status(404).json({ message: 'Car not found' });
       }
       await car.destroy();
-      res.status(204).end();
+      res.status(204).json({ message: 'Sucessfully Deleted' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Server Error' });
@@ -82,4 +83,29 @@ async getAllCars ({params}, res) {
     console.error(err);
   }
 },
+async getPopularCars (req, res) {
+  try {
+    const popularCars = await Purchase.findAll({
+      attributes: [
+        [sequelize.fn('COUNT', sequelize.col('carId')), 'purchaseCount'],
+        // Include other desired attributes from the Car model here
+      ],
+      include: [
+        {
+          model: Car,
+        },
+      ],
+      group: ['carId'],
+      order: [[sequelize.literal('purchaseCount'), 'DESC']],
+      limit: 4,
+    });
+
+    // Remove the purchaseCount attribute before sending the response
+    const cars = popularCars.map((carData) => carData.Car);
+    res.status(200).json(cars);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
 }

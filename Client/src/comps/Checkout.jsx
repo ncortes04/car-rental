@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { getStar, importImage } from '../utils/helperFunction';
+import { createBooking } from '../utils/apiRoutes';
 const Checkout = () => {
-    const checkout = useSelector(state => state.checkout);
-    console.log(checkout)
+    const selectedCar = useSelector(state => state.checkout.car);
+    const selectedDates = useSelector(state => state.checkout.bookedDays);
+
+    console.log(selectedCar,selectedDates)
     const [inputs, setInputs] = useState({
         name: '',
         phoneNumber: '',
@@ -22,7 +26,6 @@ const Checkout = () => {
         marketingAgreement: false,
         agreement: false
       });
-    
       const handleInputChange = (event) => {
         const { name, value, type } = event.target;
         if(type === 'button'){
@@ -30,6 +33,15 @@ const Checkout = () => {
         }
         setInputs(inputs => ({ ...inputs, [name]: value }));
       };
+      const handleSubmit = async () => {
+        try {
+            let response = await createBooking(selectedCar.id, selectedDates.join(','))
+            let data = response.json()
+            console.log(data)
+        } catch(e) {
+            console.error(e)
+        }
+      }
       return (
     <div className='checkout-container'>
         <div className='payment-container'>
@@ -149,11 +161,12 @@ const Checkout = () => {
                         <button  name='agreement' type="button" className='confirmation-checkbox' value={inputs.agreement} onClick={handleInputChange}></button>
                         <p>I agree with our terms and conditions and privacy policy.</p>
                    </div>
-                   <button className='car-footer-button'>
+                   <button 
+                   onClick={() => handleSubmit()}
+                   className='car-footer-button'>
                         Rent Now
                     </button>
                     <div className='flex col gap1'>
-                        <span>img</span>
                         <div>
                             <p className='payment-subtext'>All your data are safe</p>
                             <div className='payment-secondary'>We are using the advance security to provide you a speedy and safe transaction.</div>
@@ -171,17 +184,23 @@ const Checkout = () => {
                     </div>
             </div>
             <div className='checkout-selected-car flex gap1'>
-                <div className='checkout-selected-car-img'>
-                    a
+                <div className='checkout-photo'>
+                    <img src={importImage(selectedCar.imageUrl)}></img>
                 </div>
                 <div className='checkout-selected-car-info'>
-                    <h3 className='single-car-name'>car.name</h3>
-                    <span>stars</span>
+                    <h3 className='single-car-name'>{selectedCar.model}</h3>
+                    <div className='flex gap2 alignc'>
+                        <div>{getStar(selectedCar.averageRating)}</div>
+                        <p className='card-car-type'>{selectedCar.ratingCount} Reviews</p>
+                    </div>
+                    <div>
+                        <p className='text-bold'>{selectedDates[0]} - {selectedDates.at(-1)} ({selectedDates.length} Days)</p>
+                    </div>
                 </div>
             </div>
             <div className='flex spaceb'>
                 <p className='payment-secondary'>Subtotal</p>
-                <p className='payment-subtext mg0'>$80.00</p>
+                <p className='payment-subtext mg0'>${selectedCar.dailyPrice * selectedDates.length}</p>
             </div>
             <div className='flex spaceb'>
                 <p className='payment-secondary'>Tax</p>
@@ -195,7 +214,7 @@ const Checkout = () => {
                     <p className='payment-subtext mg0'>Total Rental Price</p>
                     <p className='payment-secondary'>Overall Price including Discount</p>
                 </div>
-                <p className=''>price</p>
+                <p className=''>${selectedCar.dailyPrice * selectedDates.length}</p>
             </div>
         </div>
     </div>

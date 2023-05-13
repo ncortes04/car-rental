@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchUser } from '../features/user';
 import { useNavigate } from 'react-router';
+import authService from '../utils/auth'
 import searchGlass from '../assets/search-normal.svg'
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -39,12 +40,15 @@ const NavBar = () => {
        carsLocal.pop()
     }
     carsLocal.unshift(carToStore);
+    console.log("kdjjhasdakidhjafljkhfdjlkasljakf")
     localStorage.setItem('cars', JSON.stringify(carsLocal));
     navigate(`/single/${itemId}`);
   }
  return (
     <div className='navContainer'>
-      <h1>
+      <h1 
+      className='pointer'
+      onClick={() => {navigate(`/`)}}>
         <span>Rental</span>Car
       </h1>
       <div className='height100 search-div-fixed red flex justc alignc'>
@@ -57,7 +61,6 @@ const NavBar = () => {
                   onChange={handleSearchChange}
                   onBlur={(e) => {
                     e.target.placeholder = 'Search Something Here';
-                    setSearchQuery('');
                   }}
                 />
             </div>
@@ -80,11 +83,12 @@ const NavBar = () => {
         </div>
       </div>
      
-      <div className='nav-Icons'>
-        <button className='liked'></button>
-        <button className='notifications'></button>
-        <button className='settings'></button>
-        <button className='profile'></button>
+      <div className='flex alignc gap2'>
+        {authService.loggedIn()
+        ? <button onClick={() => authService.logout()} className='nav-anchor-buttons text-bold'>Signout</button>
+        : <a  className='nav-anchor-buttons text-bold' href='/login' >Login</a>
+        }
+        <a href='/viewall' className='nav-anchor-buttons text-bold'>View All</a>      
       </div>
     </div>
   );

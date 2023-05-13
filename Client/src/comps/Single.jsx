@@ -5,29 +5,37 @@ import likedInactive from '../assets/LikedBlank.svg'
 import Sidebar from './Sidebar'
 import { useParams } from 'react-router-dom';
 import { getIndividual } from "../utils/apiRoutes"
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { deleteReview } from '../utils/apiRoutes'
-import goldStar from'../assets/ic-actions-star.svg'
-import blankStar from'../assets/ic-actions-star-blank.svg'
+import  {setLogin} from '../features/user'
 import CalendarComponent from "./calendar";
+import { importImage } from '../utils/helperFunction'
 import '../styles/single.css'
 import Recent from './Recent'
 import Recommended from './Recommended'
+import AuthService from '../utils/auth'
 import Review from './Review'
-
+import view2 from '../assets/View-2.svg'
+import view3 from '../assets/View-3.svg'
+import { getStar } from '../utils/helperFunction'
 const Single = () => {
     const [loading, setLoading] = useState(true)
     const [showCommentInput, setShowCommentInput] = useState(false);
     const [singleItem, setsingleItem] = useState({});
     const [reviews, setReviews] = useState([])
     const [calendarDate, setCalendarDate] = useState(false)
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.value)
 
+    useEffect(() => {
+      dispatch(setLogin(AuthService.getMe()));
+    }, [dispatch]);
     const [liked, setLiked] = useState(() => {
     
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
-      })
-      const user = useSelector((state) => state.user.value)
+    })
+    console.log(user)
       const {id} = useParams();
       const getItems = async () => {
         setLoading(true)
@@ -70,20 +78,6 @@ const Single = () => {
             console.log(e)
         }
       }
-      const getStar = function(limit){
-        let res = []
-        for(let i = 0; i < 5; i ++){
-            if(i < limit) {
-                res.push(
-                    <img src={goldStar}></img>
-
-                )
-            } else {
-                res.push(<img src={blankStar}></img>)
-            }
-        }
-        return res
-      }
   return (
     <div className='single-side-flex'>
          <Sidebar/>
@@ -95,17 +89,18 @@ const Single = () => {
                     <div className='ad-text'>
                         <h3>The Best Platform for Car Rental</h3>
                         <p>Ease of doing a car rental safely and reliably. Of course at a low price.</p>
+                        <img className='img-ad-abs' src={importImage(singleItem.imageUrl)}></img>
                     </div>
                 </div>
                 <div className='car-single-subphotos'>
-                    <div>
-                        <img></img>
+                    <div className='car-view1'>
+                        <img src={importImage(singleItem.imageUrl)}></img>
                     </div>
                     <div>
-                        <img></img>
+                        <img src={view2}></img>
                     </div>
                     <div>
-                        <img></img>
+                        <img src={view3}></img>
                     </div>
                 </div>
             </div>
@@ -116,9 +111,9 @@ const Single = () => {
                             <div className='flex alignc spaceb'>
                                 <p className='single-car-name '>{singleItem.make} {singleItem.model}</p>
                                 <button 
-                                onClick={() => handleLiked("123212")}
+                                onClick={() => handleLiked(singleItem.id)}
                                 className='liked-btn'>
-                                    <img src={liked["123212"] ? likedActive : likedInactive }></img>
+                                    <img src={liked[singleItem.id] ? likedActive : likedInactive }></img>
                                 </button>
                             </div>
                             <div className='flex gap2 alignc'>
@@ -172,7 +167,7 @@ const Single = () => {
         {calendarDate 
         ?
             <div className='calendar-container'>
-                    <CalendarComponent id={id} />
+                    <CalendarComponent singleCar={singleItem} id={id} />
             </div>
         : null
          }
@@ -240,7 +235,7 @@ const Single = () => {
              </div>
         </div>
             <Recent/>
-            <Recommended/>
+            <Recommended max={4}/>
             </div>            
         </div>
   )

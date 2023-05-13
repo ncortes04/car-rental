@@ -6,7 +6,7 @@ const Sidebar = ({ updateFilteredData }) => {
   const dispatch = useDispatch();
   const cars = useSelector((state) => state.car.unfilteredData);
   const [checkedItems, setCheckedItems] = useState({ type: {}, capacity: {} });
-  const [price, setPrice] = useState(150);
+  const [price, setPrice] = useState(250);
   const [activeFilters, setActiveFilters] = useState([]);
   
   const handleSliderChange = (event) => {
@@ -39,7 +39,6 @@ const Sidebar = ({ updateFilteredData }) => {
       const isPriceMatched = item.dailyPrice <= price;
       return isTypeMatched && isCapacityMatched && isPriceMatched;
     });
-  
     dispatch(setFilteredData(filteredData));
   };
   
@@ -136,8 +135,8 @@ const Sidebar = ({ updateFilteredData }) => {
       <input
         className='blue-slider'
         type="range"
-        min="10"
-        max="500"
+        min="50"
+        max="1000"
         value={price}
         onChange={handleSliderChange}
       />

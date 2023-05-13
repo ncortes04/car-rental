@@ -82,7 +82,7 @@ const Review = ({setShowCommentInput, id}) => {
                 value={newComment.header}
                 onChange={handleCommentInputChange}
                 />
-            <p className='text-bold mg0'>How Many Stars Would You This Vehicle?</p>
+            <p className='text-bold mg0'>How Many Stars Would You Give This Vehicle?</p>
             <div className='flex gap1'>
                 {getStarReview()}
             </div>

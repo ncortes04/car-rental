@@ -4,17 +4,25 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
 import userReducers from './features/user'
 import carReducers from './features/cars'
 import "@fontsource/plus-jakarta-sans"
+import checkoutReducer from './features/checkout';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import thunk from 'redux-thunk';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const store = configureStore ({
-  reducer:{
-    user: userReducers,
-    car: carReducers
-  }
-})
+
+const rootReducer = {
+  user: userReducers,
+  car: carReducers,
+  checkout: checkoutReducer,
+};
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: [...getDefaultMiddleware(), thunk],
+});
 root.render(
   <React.StrictMode>
      <Provider store={store}>

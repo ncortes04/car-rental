@@ -5,7 +5,7 @@ import gasoline from '../assets/gas-station.svg'
 import people from '../assets/profile-2user.svg'
 import car from '../assets/Car.svg'
 import { useNavigate } from 'react-router-dom';
-
+import { importImage } from '../utils/helperFunction'
 const Recent = () => {
     const navigate = useNavigate()
     const [storedValue, setStoredValue] = useState(() => {
@@ -17,7 +17,6 @@ const Recent = () => {
           return [];
         }
       });
-      console.log(storedValue)
     const [liked, setLiked] = useState(() => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
@@ -50,21 +49,22 @@ const Recent = () => {
         return (
             <div className='car-card'>
             <div className='card-header'>
-                <div className='card-name-liked'>
-                    <div>
-                        <p className='card-car-name'>{item.make} {item.model}</p>
-                        <p className='card-car-type'>{item.type}</p>
-                    </div>
-                    <button 
+                <div className='card-name-liked flex col'>
+                <p className='card-car-make'>{item.make}</p>
+                    <div className='flex spaceb'>
+                        <p className='card-car-name'>{item.model}</p>
+                        <button 
                     onClick={() => handleLiked("123212")}
                     className='liked-btn'>
                         <img src={liked["123212"] ? likedActive : likedInactive }></img>
                     </button>
+                    </div>
+                <p className='card-car-type'>{item.type}</p>
                 </div>
             </div>
                 <div className='card-main-img-div'>
                     <div className='img-shadow-box'>
-                        <img></img>
+                        <img src={importImage(item.imageUrl)} alt={item.imageUrl} />
                         <span className='shadow'></span>
                     </div>
                 </div>
@@ -87,7 +87,7 @@ const Recent = () => {
                 <div className='car-card-footer'>
                     <p className='car-footer-price'>${item.dailyPrice} /<span>day</span></p>
                     <button 
-                    onClick={() => {handlePageRelocate(item.id)}}
+                    onClick={() => {handlePageRelocate(item.id, index)}}
                     className='car-footer-button'>
                         Rent Now
                     </button>

@@ -8,8 +8,8 @@ const Top5 = ({ topData }) => {
         getPercentile();
       }
     }, [topData]);
-  
     const getPercentile = function() {
+
       let sum = topData.sum.reduce((a, b) => a + b, 0);
       const calculatedPercentArr = topData.sum.map(
         (rank) => rank / sum
@@ -21,6 +21,7 @@ const Top5 = ({ topData }) => {
       // Loading state when props haven't been passed yet
       return <div>Loading...</div>;
     }
+
     const rankColors = ['#0D3559', '#175D9C', '#2185DE','#63A9E8','#A6CEF2' ]
   return (
     <div className='br1 pd2 white'>

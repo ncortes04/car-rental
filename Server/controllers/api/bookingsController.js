@@ -13,7 +13,7 @@ module.exports = {
           if (!car) {
             return res.status(404).json({ message: 'Car not found' });
           }      
-          const {startDate, endDate, bookedDays} = body
+          const {bookedDays} = body
           const {carId} = params
           let bookingArr = bookedDays
           // Create a new booking with the specified dates
@@ -22,7 +22,7 @@ module.exports = {
             bookedDays: bookingArr,
           });
           await Purchase.create({
-            car_id: carId,
+            CarId: carId,
             bookingId: booking.id,
             buyerName: user.name,
           });

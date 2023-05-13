@@ -11,7 +11,7 @@ import Footer from './comps/Footer';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ViewAll } from './comps/ViewAll';
 import Checkout from './comps/Checkout';
-import Adminpanel from './comps/Adminpanel';
+import Adminpanel from './comps/adminpanel';
 import Login from './comps/login';
 import PieChart from './comps/PieChart';
 function App() {
@@ -27,7 +27,6 @@ function App() {
                 <div className='container'>
                   <div className='main'>
                     <Header/>
-                    <PickDrop/>
                     <Main/>
                  </div>
                 </div>}/>

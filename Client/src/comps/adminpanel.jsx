@@ -63,7 +63,6 @@ const Adminpanel = () => {
       description: ''
     })
     }
-    console.log(statistics.recentData)
   return (
     <div className='flex'>
         <div className=' menu-side-container flex col pd2 white red'>
@@ -188,7 +187,7 @@ const Adminpanel = () => {
                   <h3 className='header-h3'>Recent Transactions</h3>
                 </div>
                 <div className='flex col'>
-                  {statistics.recentData && statistics.recentData.recentPurchases.map(purchase => {
+                  {statistics.recentData ? statistics.recentData.recentPurchases.map(purchase => {
                     return(
                       <div className='recent-transaction-card bb-grey'>
                       <div className='flex'>
@@ -204,7 +203,9 @@ const Adminpanel = () => {
                       </div>
                     </div>
                     )
-                  })}
+                  })
+                : <h1>loading</h1>
+                }
                 </div>
               </div>
             </div>

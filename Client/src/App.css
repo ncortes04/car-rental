@@ -56,6 +56,14 @@ button:hover {
   font-size: 36px;
   font-weight: 600;
 }
+.nav-anchor-buttons {
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+.pointer {
+  cursor: pointer;
+}
 .search-div-fixed {
   position: relative;
 }
@@ -98,12 +106,7 @@ button:hover {
   width: 236px;
   height: 44px;
 }
-.nav-Icons button {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid var(--darkGrey);
-}
+
 .profile-icon {
   width: 44px;
   height: 44px;
@@ -123,6 +126,7 @@ button:hover {
 }
 .ad1{
   overflow: hidden;
+  position: relative;
   max-width: 640px;
   flex: 1;
   min-height: 360px;
@@ -185,6 +189,13 @@ button:hover {
   min-height: 360px;
   border-radius: 10px;
   background-color: var(--blue);
+}
+.ad-img {
+  position: absolute;
+  bottom: 0;
+  width: 60%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .ad-text {
   display: flex;
@@ -395,10 +406,12 @@ button:hover {
   max-width: 1400px;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: flex-start;
 }
 .car-card {
   min-width: 280px;
   min-height: 368px;
+  max-width: 20%;
   background: #FFFFFF;
   border-radius: 10px;
   padding: 20px;
@@ -698,7 +711,6 @@ color: #1A202C;
 .viewall-flex {
   display: flex;
   width: 100%;
-  align-items: center;
   justify-content: center;
 }
 .viewall-main {
@@ -712,12 +724,35 @@ color: #1A202C;
 @media  screen and (width < 1700px) and (width > 1200px){
   .main-flex {
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
 @media  screen and (width < 1100px){
   .car-card {
     flex: 1;
+  }
+}
+@media screen and (width < 1200px) {
+  .header-container {
+    flex-direction: column;
+    flex: 1;
+  }
+  .header-pick-container {
+    display: flex;
+    gap: 20px;
+  }
+  .pick-drop-container {
+    flex-direction: column;
+    min-width: 0;
+  }
+  .pickdrop-child-container {
+   padding: 15px;
+  }
+}
+@media screen and (width < 850px) {
+  .header-pick-container {
+   flex-direction: column;
+    gap: 20px;
   }
 }
 /* single view */ 
@@ -735,19 +770,47 @@ color: #1A202C;
 .car-catalouge {
   display: flex;
   flex: 1;
+  max-width: 485px;
   flex-direction: column;
   gap: 20px;
 }
 .car-single-subphotos {
   display: flex;
+  border-radius: 10px;
+  max-height: 124px;
+}
+.subphoto {
   max-height: 130px;
+  max-width: 180px;
   flex: 1;
-  gap: 20px;
+  background-color: #3563E9;
+}
+.checkout-photo {
+  background-color: #3563E9;
+  border-radius: 10px;
+  max-width: 140px;
+  height: 108px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkout-photo img{
+  max-width: 90%;
+}
+.car-view1 {
+  background-color: #3563E9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.car-view1 img{
+  max-width: 90%;
 }
 .car-single-subphotos div{
   flex: 1;
   border-radius: 10px;
-  background-color: red;
+  max-height: 124px;
 }
 .car-single-expanded-description {
   flex: 1;
@@ -770,6 +833,7 @@ color: #1A202C;
   background-color: #54A6FF;
   border-radius: 10px;
   flex: 1;
+  position: relative;
 }
 .car-attributes {
   display: flex;
@@ -1252,6 +1316,12 @@ color: #90A3BF;
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+.img-ad-abs {
+  position: absolute;
+  bottom: 2%;
+  width: 70%;
+  left: 15%;
 }
 .login-flex-container {
   display: flex;

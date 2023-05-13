@@ -10,7 +10,7 @@ import { fetchCars } from '../features/cars';
 import {fetchUser} from '../features/user';
 import {importImage} from '../utils/helperFunction'
 
-const Recommended = () => {
+const Recommended = ({max}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     useEffect(() => {
@@ -22,7 +22,6 @@ const Recommended = () => {
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
       })
-      console.log(cars)
     const handleLiked = (id) => {
         setLiked(prevLiked => {
           const newLiked = {...prevLiked}
@@ -45,7 +44,9 @@ const Recommended = () => {
         localStorage.setItem('cars', JSON.stringify(carsLocal));
         navigate(`/single/${itemId}`);
       }
- 
+
+      const filteredCars = cars.slice(0, max);
+
   return (
     <div className='main-flex'>
          <div className='popular-div'>
@@ -53,7 +54,7 @@ const Recommended = () => {
                 <h3>Recommended Cars</h3>
            </div>
         </div>
-        {cars && cars.map((item, index) => {
+        {filteredCars && filteredCars.map((item, index) => {
         return (
             <div className='car-card'>
             <div className='card-header'>
@@ -62,9 +63,9 @@ const Recommended = () => {
                     <div className='flex spaceb'>
                         <p className='card-car-name'>{item.model}</p>
                         <button 
-                    onClick={() => handleLiked("123212")}
+                    onClick={() => handleLiked(item.id)}
                     className='liked-btn'>
-                        <img src={liked["123212"] ? likedActive : likedInactive }></img>
+                        <img src={liked[item.id] ? likedActive : likedInactive }></img>
                     </button>
                     </div>
                 <p className='card-car-type'>{item.type}</p>

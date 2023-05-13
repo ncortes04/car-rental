@@ -14,22 +14,27 @@ module.exports = {
         try {
           const popularCars = await Purchase.findAll({
             attributes: [
-              'car_id',
-              [sequelize.fn('COUNT', sequelize.col('car_id')), 'purchaseCount'],
+              [sequelize.fn('COUNT', sequelize.col('carId')), 'purchaseCount'],
             ],
-            group: ['car_id'],
+            group: ['carId'],
             order: [[sequelize.literal('purchaseCount'), 'DESC']],
             limit: 5,
             include: [
               {
                 model: Car,
-                attributes: ['id', 'make', 'model', 'dailyPrice', 'type'],
+                attributes: ['id', 'make', 'model', 'dailyPrice', 'type',],
               },
             ],
           });
-          const sum = popularCars.map(rank => (rank.Car.dailyPrice * rank.dataValues.purchaseCount))     
+          const limit = Math.min(popularCars.length, 5); // Limit to the minimum of 5 or the actual count of purchased cars
+
+          const limitedPopularCars = popularCars.slice(0, limit); // Get the limited number of popular cars
       
-          res.status(200).json({ popularCars, sum });
+          const sum = limitedPopularCars.map(rank => (rank.Car.dailyPrice * rank.dataValues.purchaseCount));
+      
+          console.log(sum);
+      
+          res.status(200).json({ popularCars: limitedPopularCars, sum });
         } catch (err) {
           console.error(err);
           res.status(500).json({ message: 'Internal server error' });
