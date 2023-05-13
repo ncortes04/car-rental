@@ -6,7 +6,7 @@ const {
     getSingleUser,
 } = require('../controllers/api/userControllers');
 
-router.route('/me').get(authMiddleware, getSingleUser)
+router.route('/me').post(authMiddleware, getSingleUser)
 router.route('/login').post(login)
 router.route('/signup').post(createUser);
 

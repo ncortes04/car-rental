@@ -14,8 +14,14 @@ import Checkout from './comps/Checkout';
 import Adminpanel from './comps/adminpanel';
 import Login from './comps/login';
 import PieChart from './comps/PieChart';
+import { useDispatch } from 'react-redux';
+import { fetchUser } from './features/user';
 function App() {
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
   return (
     <Router>
     <div className="App" >

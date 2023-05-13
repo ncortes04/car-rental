@@ -85,27 +85,37 @@ async getAllCars ({params}, res) {
 },
 async getPopularCars (req, res) {
   try {
-    const popularCars = await Purchase.findAll({
-      attributes: [
-        [sequelize.fn('COUNT', sequelize.col('carId')), 'purchaseCount'],
-        // Include other desired attributes from the Car model here
-      ],
-      include: [
-        {
-          model: Car,
-        },
-      ],
-      group: ['carId'],
-      order: [[sequelize.literal('purchaseCount'), 'DESC']],
-      limit: 4,
+    const purchasedCars = await Purchase.findAll({
+      attributes: ['carId'],
     });
 
-    // Remove the purchaseCount attribute before sending the response
-    const cars = popularCars.map((carData) => carData.Car);
-    res.status(200).json(cars);
+    let popularCars;
+
+    if (purchasedCars.length === 0) {
+      // If no purchases have been made, return any 5 cars
+      popularCars = await Car.findAll({ limit: 4 });
+    } else {
+      // If purchases have been made, retrieve popular cars based on purchase count
+      popularCars = await Purchase.findAll({
+        attributes: [
+          [sequelize.fn('COUNT', sequelize.col('carId')), 'purchaseCount'],
+        ],
+        include: [
+          {
+            model: Car,
+          },
+        ],
+        group: ['carId'],
+        order: [[sequelize.literal('purchaseCount'), 'DESC']],
+        limit: 5,
+      });
+      popularCars = popularCars.map((carData) => carData.Car);
+    }
+
+    res.status(200).json(popularCars);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Internal server error' });
+    }
   }
-}
 }

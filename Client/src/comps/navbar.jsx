@@ -11,10 +11,6 @@ const NavBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
-
   // Function to handle search input change
   const handleSearchChange = (e) => {
     const query = e.target.value;

@@ -44,7 +44,7 @@ Car.init(
             allowNull: false,
           },
           description: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(700),
             allowNull: false
           },
           averageRating: {
@@ -77,5 +77,6 @@ Car.init(
         modeName: 'car'
     }
 );
+
 
 module.exports = Car;

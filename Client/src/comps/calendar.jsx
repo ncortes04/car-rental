@@ -98,7 +98,7 @@ const Calendar = ({ id, singleCar }) => {
           className='review-submit-btn'
           disabled={!dateRange[0].startDate || !dateRange[0].endDate || bookedDays.includes(dateRange[0].startDate)}
         >
-          asdsdsdsdadkaskjdlk
+          Confirm Booking
         </button>
       </div>
     </div>

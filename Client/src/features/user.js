@@ -1,31 +1,48 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import authService from '../utils/auth';
-
+import { getSingle } from '../utils/apiRoutes';
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
-  const response = await authService.getMe();
-  return response.foundUser;
+  try {
+    const response = await getSingle();
+    const data = await response.json()
+    return data;
+  } catch (error) {
+    throw new Error('Failed to fetch user data');
+  }
 });
 
-const initialStateValue = { value: { name: '', id: null } };
+const initialState = {
+  value: {
+    name: '',
+    id: null,
+  },
+  loading: false,
+  error: null,
+};
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState: initialStateValue,
+  initialState,
   reducers: {
     setLogin: (state, action) => {
       state.value = action.payload;
     },
     setLogout: (state) => {
-      state.value = initialStateValue;
+      state.value = initialState.value;
     },
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(fetchUser.fulfilled, (state, action) => {
+        state.loading = false;
         state.value = action.payload;
       })
-      .addCase(fetchUser.rejected, (state) => {
-        state.value = initialStateValue;
+      .addCase(fetchUser.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       });
   },
 });

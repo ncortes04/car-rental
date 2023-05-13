@@ -1,55 +1,55 @@
 [
-    {
-        "make": "ford",
-        "model": "F-150",
-        "year": 2020,
-        "color": "black",
-        "dailyPrice": 150,
-        "type": "sport",
-        "transmission": "automatic",
-        "capacity": 2,
-        "description": "great Car",
-        "tank": 16,
-        "imageUrl": "F-150"
+  {
+    "make": "mg",
+    "model": "mgzx excite",
+    "year": 2022,
+    "color": "blue",
+    "dailyPrice": 120,
+    "type": "compact suv",
+    "transmission": "automatic",
+    "capacity": 8,
+    "description": "The MGZX Excite offers comfort and versatility for your adventures. With its spacious interior, advanced safety features, and smooth handling, it ensures a pleasant and enjoyable driving experience. Whether you're going on a family road trip or exploring off-road trails, the MGZX Excite delivers performance and reliability.",
+    "tank": 18,
+    "imageUrl": "mgzx-exclusive"
     },
     {
-      "make": "nissaan",
-      "model": "GT-R",
-      "year": 2022,
-      "color": "white",
-      "dailyPrice": 300,
-      "type": "sport",
-      "transmission": "automatic",
-      "capacity": 2,
-      "description": "The Nissan Gt-R is a reliable and versatile Sprts Car.",
-      "tank": 15,
-      "imageUrl": "gt-r"
+    "make": "nissan",
+    "model": "GT-R",
+    "year": 2022,
+    "color": "white",
+    "dailyPrice": 300,
+    "type": "sport",
+    "transmission": "automatic",
+    "capacity": 2,
+    "description": "The Nissan GT-R is a reliable and versatile sports car. With its powerful engine, aerodynamic design, and cutting-edge technology, it offers thrilling performance on the road. Whether you're driving on the track or cruising on the highway, the GT-R delivers exhilaration and precision. Experience the perfect blend of speed, style, and luxury with the Nissan GT-R.",
+    "tank": 15,
+    "imageUrl": "gt-r"
     },
     {
-        "make": "honda",
-        "model": "CR-v",
-        "year": 2022,
-        "color": "white",
-        "dailyPrice": 100,
-        "type": "suv",
-        "transmission": "automatic",
-        "capacity": 5,
-        "description": "The Honda CR-V is a reliable and versatile SUV.",
-        "tank": 15,
-        "imageUrl": "cr-v"
-      },
+    "make": "honda",
+    "model": "CR-v",
+    "year": 2022,
+    "color": "white",
+    "dailyPrice": 100,
+    "type": "suv",
+    "transmission": "automatic",
+    "capacity": 5,
+    "description": "The Honda CR-V is a reliable and versatile SUV. With its spacious cabin, comfortable seating, and advanced safety features, it provides a comfortable and secure driving experience for both city commutes and outdoor adventures. Whether you're tackling rough terrains or navigating urban streets, the CR-V offers smooth handling and excellent fuel efficiency. Explore the world with confidence in the Honda CR-V.",
+    "tank": 15,
+    "imageUrl": "cr-v"
+    },
     {
-      "make": "koenigsegg",
-      "model": "koenigsegg",
-      "year": 2023,
-      "color": "silver",
-      "dailyPrice": 1000,
-      "type": "supercar",
-      "transmission": "automatic",
-      "capacity": 2,
-      "description": "Experience the ultimate thrill with the Koenigsegg supercar.",
-      "tank": 20,
-      "imageUrl": "koenigsegg"
+    "make": "koenigsegg",
+    "model": "koenigsegg",
+    "year": 2023,
+    "color": "silver",
+    "dailyPrice": 1000,
+    "type": "supercar",
+    "transmission": "automatic",
+    "capacity": 2,
+    "description": "Experience the ultimate thrill with the Koenigsegg supercar. With its breathtaking design, unparalleled performance, and advanced engineering, the Koenigsegg takes driving to a whole new level. Feel the raw power of its high-performance engine and enjoy the precision handling and aerodynamics that ensure an exhilarating ride. Unleash your passion for speed with the Koenigsegg supercar.",
+    "tank": 20,
+    "imageUrl": "koenigsegg"
     },
     {
       "make": "rolls-royce",
@@ -60,11 +60,11 @@
       "type": "luxury",
       "transmission": "automatic",
       "capacity": 4,
-      "description": "Indulge in luxury and elegance with the Rolls-Royce.",
+      "description": "Indulge in the epitome of luxury and elegance with the Rolls-Royce. Meticulously crafted with attention to every detail, this prestigious vehicle offers an unparalleled driving experience. From the sumptuous leather seats to the exquisite wood paneling, the interior exudes opulence and sophistication. The powerful engine and advanced suspension system provide a smooth and graceful ride, while the cutting-edge technology ensures seamless connectivity and entertainment. With its timeless design and unmatched craftsmanship, the Rolls-Royce sets the standard for luxury automobiles.",
       "tank": 18,
       "imageUrl": "rolls-royce"
-    },
-    {
+      },
+      {
       "make": "daihatsu",
       "model": "all new terios",
       "year": 2022,
@@ -73,24 +73,24 @@
       "type": "compact suv",
       "transmission": "automatic",
       "capacity": 8,
-      "description": "The All New Terios offers comfort and versatility for your adventures.",
+      "description": "Embark on extraordinary adventures with the All New Terios. This compact SUV combines functionality with style, offering ample space for passengers and cargo. With its robust yet sleek design, the Terios stands out on any terrain. Equipped with advanced safety features and innovative technology, it ensures a secure and comfortable journey. Whether you're navigating city streets or exploring off-road trails, the Terios delivers exceptional performance and versatility. Experience the perfect balance of practicality and excitement with the All New Terios.",
       "tank": 14,
       "imageUrl": "all-new-terios"
-    },
-    {
-        "make": "mg",
-        "model": "mgzx exclusive",
-        "year": 2022,
-        "color": "red",
-        "dailyPrice": 80,
-        "type": "compact suv",
-        "transmission": "automatic",
-        "capacity": 8,
-        "description": "The MGZX Exclusive offers comfort and versatility for your adventures.",
-        "tank": 14,
-        "imageUrl": "mgzx-exclusive"
       },
-    {
+      {
+      "make": "mg",
+      "model": "mgzx exclusive",
+      "year": 2022,
+      "color": "red",
+      "dailyPrice": 80,
+      "type": "compact suv",
+      "transmission": "automatic",
+      "capacity": 8,
+      "description": "Indulge in the luxurious comfort and versatility of the MGZX Exclusive. Designed to elevate your driving experience, this compact SUV offers a spacious cabin and premium features. With its refined styling and attention to detail, the MGZX Exclusive exudes sophistication and modernity. Equipped with advanced safety technologies and intelligent infotainment systems, it provides both convenience and peace of mind. Whether you're embarking on a family road trip or navigating city streets, the MGZX Exclusive delivers a perfect blend of style and performance.",
+      "tank": 14,
+      "imageUrl": "mgzx-exclusive"
+      },
+      {
       "make": "mg",
       "model": "new mgzs",
       "year": 2022,
@@ -99,9 +99,9 @@
       "type": "hatchback",
       "transmission": "automatic",
       "capacity": 6,
-      "description": "Experience style and performance with the New MGZS.",
+      "description": "Experience the epitome of style and performance with the New MGZS. This dynamic hatchback combines sleek aesthetics with impressive capabilities. Its aerodynamic design not only enhances its sporty appearance but also improves fuel efficiency and handling. Step inside the comfortable and feature-packed interior, where modern technology seamlessly integrates with your driving experience. With its agile performance, advanced safety features, and connectivity options, the New MGZS is the perfect companion for urban adventures and thrilling drives on winding roads.",
       "tank": 12,
       "imageUrl": "new-mgzs"
-    }
+      }
   ]
   

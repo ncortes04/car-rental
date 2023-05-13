@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
-
+const Car = require('./Car')
 class Reviews extends Model {}
 
 Reviews.init ({
@@ -41,6 +41,14 @@ Reviews.init ({
     underscored: true,
     modeName: 'reviews'
 }
-);
 
+);
+Reviews.addHook('afterCreate', async (review) => {
+
+  const car = await Car.findByPk(review.car_id);
+  const numReviews = await Reviews.count({ where: { car_id: review.car_id } });
+  const averageRating = await Reviews.aggregate('rating', 'AVG', { where: { car_id: review.car_id } });
+
+  await car.update({ averageRating, ratingCount: numReviews });
+});
 module.exports = Reviews;

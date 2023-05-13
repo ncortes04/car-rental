@@ -21,11 +21,11 @@ async createReview({user = null, body}, res){
       res.status(404).json({ message: 'Car not found' });
       return;
     }
-    const prevAverage = car.averageRating
-    const numReviews = car.ratingCount;
-    const averageRating = (prevAverage + rating) / (numReviews + 1)
+    // const prevAverage = car.averageRating
+    // const numReviews = car.ratingCount;
+    // const averageRating = (prevAverage + rating) / (numReviews + 1)
    
-    await car.update({ averageRating: averageRating, ratingCount: numReviews + 1 });
+    // await car.update({ averageRating: averageRating, ratingCount: numReviews + 1 });
     res.status(201).json({ review });
   } catch (error) {
     console.log(error);

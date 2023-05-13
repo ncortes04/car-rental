@@ -64,6 +64,9 @@ button:hover {
 .pointer {
   cursor: pointer;
 }
+.cap {
+  text-transform: capitalize;
+}
 .search-div-fixed {
   position: relative;
 }

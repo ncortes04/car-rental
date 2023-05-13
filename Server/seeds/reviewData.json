@@ -1,0 +1,73 @@
+[
+    {
+      "header": "Great Car, Smooth Ride",
+      "rating": 4,
+      "comment": "I had a wonderful experience driving this car. It was comfortable and had a smooth ride.",
+      "user_id": 1,
+      "car_id": 1
+    },
+    {
+      "header": "Powerful and Reliable",
+      "rating": 5,
+      "comment": "This car exceeded my expectations. It had great power and performed flawlessly throughout my trip.",
+      "user_id": 2,
+      "car_id": 1
+    },
+    {
+      "header": "Comfortable and Spacious",
+      "rating": 4,
+      "comment": "The car provided ample space for both passengers and luggage. It was a comfortable ride overall.",
+      "user_id": 3,
+      "car_id": 2
+    },
+    {
+      "header": "Impressive Fuel Efficiency",
+      "rating": 5,
+      "comment": "I was amazed by how fuel-efficient this car was. It saved me a lot of money on gas during my trip.",
+      "user_id": 4,
+      "car_id": 2
+    },
+    {
+      "header": "Smooth Handling",
+      "rating": 5,
+      "comment": "This car had exceptional handling. It was a joy to drive on winding roads.",
+      "user_id": 5,
+      "car_id": 2
+    },
+    {
+      "header": "Luxurious and Stylish",
+      "rating": 4,
+      "comment": "I felt like a VIP driving this car. It had a sleek design and luxurious features.",
+      "user_id": 6,
+      "car_id": 3
+    },
+    {
+      "header": "Reliable and Dependable",
+      "rating": 5,
+      "comment": "This car never let me down. It was reliable and performed well throughout my trip.",
+      "user_id": 7,
+      "car_id": 3
+    },
+    {
+      "header": "Fun and Sporty",
+      "rating": 5,
+      "comment": "I had a blast driving this car. It had sporty features and provided an exhilarating experience.",
+      "user_id": 8,
+      "car_id": 3
+    },
+    {
+      "header": "Excellent Family Car",
+      "rating": 4,
+      "comment": "This car was perfect for my family. It had enough space and safety features for a comfortable ride.",
+      "user_id": 9,
+      "car_id": 4
+    },
+    {
+      "header": "Smooth Performance",
+      "rating": 5,
+      "comment": "I was impressed by the smooth performance of this car. It delivered a comfortable and enjoyable ride.",
+      "user_id": 10,
+      "car_id": 4
+    }
+  ]
+  

@@ -25,17 +25,15 @@ const Single = () => {
     const [reviews, setReviews] = useState([])
     const [calendarDate, setCalendarDate] = useState(false)
     const dispatch = useDispatch();
+    //fix user not being updated
     const user = useSelector((state) => state.user.value)
 
-    useEffect(() => {
-      dispatch(setLogin(AuthService.getMe()));
-    }, [dispatch]);
+
     const [liked, setLiked] = useState(() => {
     
         const local = localStorage.getItem("liked")
         return local ? JSON.parse(local) : {}
     })
-    console.log(user)
       const {id} = useParams();
       const getItems = async () => {
         setLoading(true)
@@ -108,7 +106,7 @@ const Single = () => {
                 <div className='card-header'>
                     <div className='card-name-liked shorflex1'>
                         <div className='flex col shorflex1'>
-                            <div className='flex alignc spaceb'>
+                            <div className='flex alignc spaceb cap'>
                                 <p className='single-car-name '>{singleItem.make} {singleItem.model}</p>
                                 <button 
                                 onClick={() => handleLiked(singleItem.id)}
@@ -127,7 +125,7 @@ const Single = () => {
                 <div className='car-decription-div shorflex1'>
                     <p className='card-single-description'>{singleItem.description}</p>
                 </div>
-                <div className='car-attributes'>
+                <div className='car-attributes cap'>
                     <div className='car-attr-flex'>
                         <div className='car-attr-flex-text'>
                             <p className='attr-label'>TypeCar</p>

@@ -37,7 +37,6 @@ const Recent = () => {
         navigate(`/single/${itemId}`);
       }
    
-    const testMap = []
   return (
     <div className='main-flex'>
         <div className='popular-div'>
@@ -54,9 +53,9 @@ const Recent = () => {
                     <div className='flex spaceb'>
                         <p className='card-car-name'>{item.model}</p>
                         <button 
-                    onClick={() => handleLiked("123212")}
+                    onClick={() => handleLiked(item.id)}
                     className='liked-btn'>
-                        <img src={liked["123212"] ? likedActive : likedInactive }></img>
+                        <img src={liked[item.id] ? likedActive : likedInactive }></img>
                     </button>
                     </div>
                 <p className='card-car-type'>{item.type}</p>
