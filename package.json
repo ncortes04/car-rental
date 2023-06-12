@@ -5,11 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run client\" \"npm run server\"",
-    "heroku-postbuild": "cd Client && npm install && npm run build",
-    "client": "cd Client && npm start",
-    "server": "nodemon Server/server.js"
-  },  
+    "server": "cd server && nodemon server.js",
+    "client": "cd client && npm start",
+    "develop": "concurrently \"npm run client\"  \"npm run server\""
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ncortes04/fig-Ecomm.git"
