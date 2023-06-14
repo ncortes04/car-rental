@@ -6,12 +6,11 @@ import authService from '../utils/auth'
 import searchGlass from '../assets/search-normal.svg'
 const NavBar = () => {
   const dispatch = useDispatch();
-  const cars = useSelector((state) => state.car.unfilteredData); // Assuming the array of cars is stored in the car slice
+  const cars = useSelector((state) => state.car.unfilteredData); 
   const navigate = useNavigate()
   const [searchQuery, setSearchQuery] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  // Function to handle search input change
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);

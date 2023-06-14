@@ -2,12 +2,13 @@
   "name": "fig-ecomm",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "cd server && nodemon server.js",
-    "client": "cd client && npm start",
-    "develop": "concurrently \"npm run client\"  \"npm run server\""
+    "start": "node server/server.js",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build",
+    "seed": "cd server && npm run seed",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\""
   },
   "repository": {
     "type": "git",
